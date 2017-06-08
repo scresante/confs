@@ -113,10 +113,10 @@ bindtc ()
  export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # user bin to path
-export PATH="$HOME/bin:$PATH"
+[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+[ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
 
 ### FUCK AUTO_CD FUCK AUTOCD
 unsetopt auto_cd
