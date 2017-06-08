@@ -1,0 +1,2 @@
+alias left="xrandr --output DVI-I-1 --brightness $x"
+alias right="xrandr --output DVI-D-0 --brightness $x"

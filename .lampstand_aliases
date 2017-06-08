@@ -1,0 +1,1 @@
+alias brightness="xrandr --output eDP-1 --brightness $x"
