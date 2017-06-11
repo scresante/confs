@@ -127,3 +127,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 source /etc/zsh_command_not_found
+source /usr/share/nvm/init-nvm.sh 

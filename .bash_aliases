@@ -15,7 +15,6 @@ alias gst="git status"
 alias gsh="git show"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit" 
 
-alias sizes='du -shc -- * | sort -h'
 alias fs="xrandr --output eDP-1 --mode 1366x768"
 alias pacsize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqen | sort) <(pacman -Qqg base base-devel | sort )) | sort -n'
 alias paclast="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 30"

@@ -1,3 +1,9 @@
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+
 " extra filetype options
 
 au BufNewFile,BufRead *.less set filetype=less
@@ -7,12 +13,6 @@ autocmd BufRead,BufNewFile *.test set filetype=php
 autocmd BufRead,BufNewFile *.module set filetype=php
 autocmd BufRead,BufNewFile *.install set filetype=php
 augroup END
-
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on
 
 autocmd FileType perl set keywordprg=perldoc\ -f
 
@@ -26,3 +26,6 @@ augroup json_autocmd
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+
+"angular
+autocmd BufRead,BufNewFile *.ts set filetype=javascript

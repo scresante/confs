@@ -28,7 +28,7 @@ endif
 
 execute pathogen#infect()
 
-set shiftwidth=4
+set shiftwidth=2
 set ts=2
 set expandtab
 set autoindent
