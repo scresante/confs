@@ -116,3 +116,4 @@ set undofile
 set undodir=~/.vim_undodir
 let g:airline_theme='base16_summerfruit'
 
+set diffopt=filler,iwhite,context:10
