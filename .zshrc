@@ -118,8 +118,6 @@ bindtc ()
 ### Added by the Heroku Toolbelt
 [ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
 
-### FUCK AUTO_CD FUCK AUTOCD
-unsetopt auto_cd
 
 #source /usr/local/bin/aws_zsh_completer.sh
 
@@ -128,3 +126,9 @@ export NVM_DIR="$HOME/.nvm"
 
 source /etc/zsh_command_not_found
 source /usr/share/nvm/init-nvm.sh
+
+unsetopt auto_cd
+setopt extendedglob
+unsetopt nonomatch
+setopt nomatch
+setopt notify
