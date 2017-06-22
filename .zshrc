@@ -1,44 +1,19 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
-ZSH_THEME="random"
 ZSH_THEME="gianu"
-#ZSH_THEME="dpoggi"
-#ZSH_THEME="duellj"
-#ZSH_THEME="cypher"
-#ZSH_THEME="rkj"
-#ZSH_THEME="xiong-chiamiov"
-
-# Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -57,20 +32,7 @@ plugins=(python cp)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-#export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -118,14 +80,15 @@ bindtc ()
 ### Added by the Heroku Toolbelt
 [ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
 
-
-#source /usr/local/bin/aws_zsh_completer.sh
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -x "$NVM_DIR/nvm.sh" ] && \
+  echo loading nvm... ;\
+  \. "$NVM_DIR/nvm.sh"  ;\
+  source /usr/share/nvm/init-nvm.sh
 
-source /etc/zsh_command_not_found
-source /usr/share/nvm/init-nvm.sh
+#source /etc/zsh_command_not_found
+CNF=/usr/share/doc/pkgfile/command-not-found.zsh
+[ -e $CNF ] && source $CNF
 
 unsetopt auto_cd
 setopt extendedglob
