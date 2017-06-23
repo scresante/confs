@@ -81,10 +81,12 @@ bindtc ()
 [ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-[ -x "$NVM_DIR/nvm.sh" ] && \
-  echo loading nvm... ;\
-  \. "$NVM_DIR/nvm.sh"  ;\
+
+if [ -x "$NVM_DIR/nvm.sh" ]; then
+  echo loading nvm...
+  source "$NVM_DIR/nvm.sh"
   source /usr/share/nvm/init-nvm.sh
+fi
 
 #source /etc/zsh_command_not_found
 CNF=/usr/share/doc/pkgfile/command-not-found.zsh
