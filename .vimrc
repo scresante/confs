@@ -28,8 +28,10 @@ endif
 
 execute pathogen#infect()
 
+" set all default TS to 2
 set shiftwidth=2
 set ts=2
+set sts=2
 set expandtab
 set autoindent
 set smartindent
