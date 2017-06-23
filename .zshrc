@@ -97,3 +97,6 @@ setopt extendedglob
 unsetopt nonomatch
 setopt nomatch
 setopt notify
+
+# VIM mode
+bindkey -v
