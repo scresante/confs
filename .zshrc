@@ -85,9 +85,8 @@ unsetopt nonomatch
 setopt nomatch
 setopt notify
 
-# VIM mode
-#bindkey -v
-#export KEYTIMEOUT=1
+# VIM mode (enabled with omz plugin)
+export KEYTIMEOUT=1
 # fix up/down arrow bindings
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
