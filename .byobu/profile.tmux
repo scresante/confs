@@ -1,7 +1,13 @@
 source $BYOBU_PREFIX/share/byobu/profiles/tmux
-set -g mouse on
-set -g mouse-select-pane on
-set -g mouse-select-window on
-set -g mouse-resize-pane on
-set -g mouse-utf8 on
 source $BYOBU_PREFIX/share/byobu/keybindings/f-keys.tmux.disable
+#
+# reload tmux config
+unbind r
+bind r \
+    source-file ~/.byobu/profile.tmux \;\
+    display 'Reloaded tmux config.'
+#
+# i dont give a fuck whats up
+
+#source ~/.byobu/mouseon.tmux
+#source ~/.byobu/mouseoff.tmux
