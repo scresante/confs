@@ -21,7 +21,9 @@ alias paclast="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 30"
 alias yt="yaourt "
 
 alias fmnt='findmnt -D -t notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
-alias sizes='du -shc -- * | sort -h'
+if [[ ${SHELL##*/} = 'zsh' ]]; then
+  alias sizes='du -shc -- *(D) | sort -h'
+else; alias sizes='du -shc -- * | sort -h';fi
 
 hostname=`hostname`
 [[ -e $HOME/.$hostname_aliases ]] && source $HOME/.$hostname_aliases
