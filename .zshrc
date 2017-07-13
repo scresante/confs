@@ -100,3 +100,8 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   zle -N down-line-or-beginning-search
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+# fix home/end keys for vi mode!
+bindkey "^[OH" beginning-of-line
+bindkey -M vicmd "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
+bindkey -M vicmd "^[OF" end-of-line
