@@ -23,7 +23,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp nvm vi-mode)
+plugins=(python cp nvm vi-mode )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,3 +105,8 @@ bindkey "^[OH" beginning-of-line
 bindkey -M vicmd "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey -M vicmd "^[OF" end-of-line
+# fix del/ins key
+bindkey '[3~' delete-char
+bindkey -M vicmd '[3~' delete-char
+bindkey -M vicmd '[2~' vi-insert
+
