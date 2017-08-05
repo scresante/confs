@@ -11,20 +11,20 @@ call pathogen#helptags()
 
 let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_php_phpcs_args=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
-"if has('statusline')
-  "set laststatus=2
-  "" Broken down into easily includeable segments
-  "set statusline=%<%f\ " Filename
-  "set statusline+=%w%h%m%r " Options
-  "set statusline+=%{fugitive#statusline()} " Git Hotness
-  "set statusline+=\ [%{&ff}/%Y] " filetype
-""  set statusline+=\ [%{getcwd()}] " current dir
-""  set statusline+=%#warningmsg#
-  "set statusline+=%{SyntasticStatuslineFlag()}
-  "set statusline+=%*
-  "let g:syntastic_enable_signs=1
-  "set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
-"endif
+if has('statusline')
+  set laststatus=2
+  " Broken down into easily includeable segments
+  set statusline=%<%f\ " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y] " filetype
+  set statusline+=\ [%{getcwd()}] " current dir
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_enable_signs=1
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+endif
 
 execute pathogen#infect()
 
@@ -56,6 +56,9 @@ set scrolloff=5
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
+  if &term =~ '^screen'
+    set ttymouse=xterm2
+  endif
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -114,8 +117,12 @@ let g:number=1
 set relativenumber
 let g:relnum=1
 
-set undofile
-set undodir=~/.vim_undodir
-"let g:airline_theme='base16_summerfruit'
+if has("persistent_undo")
+  set undofile
+  set undodir=~/.vim_undodir
+endif
 
+"let g:airline_theme='base16_summerfruit'
+let g:airline_powerline_fonts = 1
 set diffopt=filler,iwhite,context:10
+

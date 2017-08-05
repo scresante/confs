@@ -37,20 +37,6 @@ export EDITOR='vim'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 source ~/.bash_aliases
 
-#bindtc ()
-#{
-  #setopt localoptions
-  #local keyval=$(echotc "$1" 2>&- )
-  #[[ $keyval == "no" ]] && keyval=""
-  #bindkey "${keyval:-$2}" "$3"
-#}
-#bindtc kP "^[[I" history-beginning-search-backward
-#bindtc kN "^[[G" history-beginning-search-forward
-#[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
-#[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
-#bindkey  "${key[PageUp]}"    history-beginning-search-backward
-#bindkey  "${key[PageDown]}"  history-beginning-search-forward
-
 # Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 # # Less Colors for Man Pages
  export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -85,8 +71,6 @@ unsetopt nonomatch
 setopt nomatch
 setopt notify
 
-# VIM mode (enabled with omz plugin)
-export KEYTIMEOUT=1
 # fix up/down arrow bindings
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
@@ -100,11 +84,24 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   zle -N down-line-or-beginning-search
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+
+###__   _____ __  __ __  __  ___  ___  ___
+###\ \ / /_ _|  \/  |  \/  |/ _ \|   \| __|
+### \ V / | || |\/| | |\/| | (_) | |) | _|
+###  \_/ |___|_|  |_|_|  |_|\___/|___/|___|
+###
+#  (enabled with omz plugin)
+export KEYTIMEOUT=1
 # fix home/end keys for vi mode!
 bindkey "^[OH" beginning-of-line
 bindkey -M vicmd "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey -M vicmd "^[OF" end-of-line
+# fix home/end keys for vi mode in NATIVE TMUX!
+bindkey "[1~" beginning-of-line
+bindkey -M vicmd "[1~" beginning-of-line
+bindkey "[4~" end-of-line
+bindkey -M vicmd "[4~" end-of-line
 # fix del/ins key
 bindkey '[3~' delete-char
 bindkey -M vicmd '[3~' delete-char
