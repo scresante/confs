@@ -10,4 +10,4 @@ bind r \
 # i dont give a fuck whats up
 
 #source ~/.byobu/mouseon.tmux
-#source ~/.byobu/mouseoff.tmux
+source ~/.byobu/mouseoff.tmux

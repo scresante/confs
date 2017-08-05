@@ -11,20 +11,20 @@ call pathogen#helptags()
 
 let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_php_phpcs_args=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
-if has('statusline')
-  set laststatus=2
-  " Broken down into easily includeable segments
-  set statusline=%<%f\ " Filename
-  set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y] " filetype
-"  set statusline+=\ [%{getcwd()}] " current dir
-"  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_enable_signs=1
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
-endif
+"if has('statusline')
+  "set laststatus=2
+  "" Broken down into easily includeable segments
+  "set statusline=%<%f\ " Filename
+  "set statusline+=%w%h%m%r " Options
+  "set statusline+=%{fugitive#statusline()} " Git Hotness
+  "set statusline+=\ [%{&ff}/%Y] " filetype
+""  set statusline+=\ [%{getcwd()}] " current dir
+""  set statusline+=%#warningmsg#
+  "set statusline+=%{SyntasticStatuslineFlag()}
+  "set statusline+=%*
+  "let g:syntastic_enable_signs=1
+  "set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+"endif
 
 execute pathogen#infect()
 
@@ -116,6 +116,6 @@ let g:relnum=1
 
 set undofile
 set undodir=~/.vim_undodir
-let g:airline_theme='base16_summerfruit'
+"let g:airline_theme='base16_summerfruit'
 
 set diffopt=filler,iwhite,context:10
