@@ -16,7 +16,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -106,4 +106,10 @@ bindkey -M vicmd "[4~" end-of-line
 bindkey '[3~' delete-char
 bindkey -M vicmd '[3~' delete-char
 bindkey -M vicmd '[2~' vi-insert
+# bind alt-d for delete-word
+bindkey 'd' delete-word
 
+### AWESOME AUTOSEARCH MENU
+autoload -Uz history-beginning-search-menu
+zle -N history-beginning-search-menu
+bindkey '^x^x' history-beginning-search-menu
