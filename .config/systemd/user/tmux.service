@@ -1,0 +1,13 @@
+[Unit]
+Description=Start tmux at startup detached
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux new-session -s %u -d
+ExecStop=/usr/bin/tmux kill-session -t %u
+
+[Install]
+WantedBy=multi-user.target
+
+# In order to persist a tmux session at startup, run
+# # loginctl enable-linger $username
