@@ -27,3 +27,5 @@ else; alias sizes='du -shc -- * | sort -h';fi
 
 hostname=`hostname`
 [[ -e $HOME/.$hostname_aliases ]] && source $HOME/.$hostname_aliases
+
+alias h='fc -nl -15'
