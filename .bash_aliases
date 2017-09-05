@@ -23,9 +23,9 @@ alias yt="yaourt "
 alias fmnt='findmnt -D -t notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
 if [[ ${SHELL##*/} = 'zsh' ]]; then
   alias sizes='du -shc -- *(D) | sort -h'
-else; alias sizes='du -shc -- * | sort -h';fi
+  else alias sizes='du -shc -- * | sort -h';fi
 
 hostname=`hostname`
-[[ -e $HOME/.$hostname_aliases ]] && source $HOME/.$hostname_aliases
+[[ -e $HOME/.${hostname}_aliases ]] && source $HOME/.${hostname}_aliases
 
 alias h='fc -nl -15'

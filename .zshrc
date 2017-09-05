@@ -113,3 +113,12 @@ bindkey 'd' delete-word
 autoload -Uz history-beginning-search-menu
 zle -N history-beginning-search-menu
 bindkey '^x^x' history-beginning-search-menu
+
+#TMUX
+TMUX_SESNAME=base
+if which tmux > /dev/null 2>&1; then
+  if [[ -z "$TMUX" && -e $HOME/.tmux/tmx.sh ]]; then
+    $HOME/.tmux/tmx.sh $TMUX_SESNAME
+  fi
+fi
+
