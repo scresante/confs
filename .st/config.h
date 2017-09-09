@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Source Code Variable:pixelsize=12:antialias=true:autohint=true";
+char font[] = "Inconsolata Regular:pixelsize=12:antialias=false:autohint=false";
 int borderpx = 2;
 
 /*

@@ -23,7 +23,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp nvm vi-mode )
+plugins=(python cp nvm vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,10 +51,9 @@ source ~/.bash_aliases
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
-[ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
+#[ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
 
 #export NVM_DIR="$HOME/.nvm"
-
 #if [ -x "$NVM_DIR/nvm.sh" ]; then
   #echo loading nvm...
   #source "$NVM_DIR/nvm.sh"
