@@ -29,3 +29,4 @@ augroup END
 
 "angular
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
+

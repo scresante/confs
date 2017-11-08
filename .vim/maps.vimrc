@@ -55,6 +55,6 @@ nnoremap <Nul> <c-b>zz
 nnoremap <leader>r :source ~/.vimrc<CR>
 
 " open help by default vert right
-cnoremap help vert bo help
+"cnoremap help vert bo help
 
 nnoremap <leader><space> :noh<CR>
