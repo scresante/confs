@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/home/shawn/.vim'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/shawn/ethereum-token/testproject/node_modules/zeppelin-solidity'
+let g:netrw_dirhist_2='/home/shawn/ethereum-token/testproject/node_modules/zeppelin-solidity/contracts'
+let g:netrw_dirhist_3='/home/shawn/ethereum-token/testproject/node_modules/zeppelin-solidity/contracts/token'
+let g:netrw_dirhist_4='/home/shawn/ethereum-token/testproject/contracts'
+let g:netrw_dirhist_5='/home/shawn/ethereum-token/testproject'
