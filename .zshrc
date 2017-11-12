@@ -121,3 +121,7 @@ if which tmux > /dev/null 2>&1; then
   fi
 fi
 
+export HISTSIZE=50000
+export SAVEHIST=5000
+setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks
+unsetopt incappendhistory
