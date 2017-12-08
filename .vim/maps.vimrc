@@ -15,7 +15,7 @@ nnoremap <Right> <NOP>
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap <F2> <ESC>:Vexplore<Cr>
+nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 nnoremap <F3> <ESC>:tabp<Cr>
 nnoremap <F4> <ESC>:tabn<Cr>
 " write file and drop to explorer
@@ -58,3 +58,4 @@ nnoremap <leader>r :source ~/.vimrc<CR>
 "cnoremap help vert bo help
 
 nnoremap <leader><space> :noh<CR>
+
