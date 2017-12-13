@@ -9,6 +9,7 @@ filetype off
 call pathogen#incubate()
 call pathogen#helptags()
 
+let g:syntastic_python_checkers = ['']
 let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_php_phpcs_args=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 if has('statusline')
@@ -126,3 +127,7 @@ endif
 let g:airline_powerline_fonts = 1
 set diffopt=filler,iwhite,context:10
 
+let g:pymode_python = 'python3'
+let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pylint', 'pyflakes']
+
+set foldlevelstart=2
