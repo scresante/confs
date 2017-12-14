@@ -9,17 +9,17 @@ filetype off
 call pathogen#incubate()
 call pathogen#helptags()
 
-let g:syntastic_python_checkers = ['']
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_php_phpcs_args=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 if has('statusline')
   set laststatus=2
   " Broken down into easily includeable segments
-  set statusline=%<%f\ " Filename
+  set statusline=[%<%{getcwd()}] " current dir
   set statusline+=%w%h%m%r " Options
   set statusline+=%{fugitive#statusline()} " Git Hotness
   set statusline+=\ [%{&ff}/%Y] " filetype
-  set statusline+=\ [%{getcwd()}] " current dir
+  set statusline+=\ %f\ " Filename
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -131,3 +131,4 @@ let g:pymode_python = 'python3'
 let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pylint', 'pyflakes']
 
 set foldlevelstart=2
+set tabpagemax=60
