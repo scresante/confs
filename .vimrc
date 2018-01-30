@@ -129,6 +129,10 @@ set diffopt=filler,iwhite,context:10
 
 let g:pymode_python = 'python3'
 let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pylint', 'pyflakes']
+let g:pymode_options_max_line_length=120
 
 set foldlevelstart=2
 set tabpagemax=60
+
+" dont open folds with {} movement
+set fdo-=block
