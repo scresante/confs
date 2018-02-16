@@ -1,0 +1,29 @@
+#!/bin/bash
+
+vim_undo_dir=$HOME/.vim_undodir
+
+count=0; size=0
+for file in $vim_undo_dir/*; do
+  real_file=$(echo "$file" | sed 's:%:/:g;s:^.*//:/:')
+  if [ ! -e "$real_file" ]
+    then
+      this_size=$(stat -c %s "$file")
+      if [[ $1 == '--clean' ]]; then
+        rm "$file"  && count=$(( $count + 1)) && size=$(($size + $this_size))
+      else
+        count=$(( $count + 1))
+        size=$(( $size + $this_size ))
+      fi
+    fi
+  done
+
+cleaned_size=$(numfmt --to=iec --suffix=B --round=nearest --format='%.3f' $size)
+
+[[ $count == 0 ]] && exit
+if [[ $1 == '--clean' ]]; then
+  echo $count files removed and $cleaned_size freed
+else
+  echo $count missing files
+  echo $cleaned_size can be freed
+  echo to clean files rerun $! with '--clean'
+fi
