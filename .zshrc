@@ -23,7 +23,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp nvm vi-mode)
+plugins=(python cp nvm vi-mode globalias)
 
 source $ZSH/oh-my-zsh.sh
 
