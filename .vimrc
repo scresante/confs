@@ -128,8 +128,9 @@ let g:airline_powerline_fonts = 1
 set diffopt=filler,iwhite,context:10
 
 let g:pymode_python = 'python3'
-let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pylint', 'pyflakes']
+let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pyflakes'] " 'pylint', 
 let g:pymode_options_max_line_length=120
+let g:pymode_lint_ignore = "C0111"
 
 set foldlevelstart=2
 set tabpagemax=60
