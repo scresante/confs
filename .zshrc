@@ -23,7 +23,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp nvm vi-mode globalias)
+plugins=(python cp vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -168,4 +168,21 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*' force-list always
 
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
+
+# space expands all aliases, including global
+bindkey -M emacs "^ " globalias
+bindkey -M viins "^ " globalias
+
+# control-space to make a normal space
+bindkey -M emacs " " magic-space
+bindkey -M viins " " magic-space
+
+# normal space during searches
+bindkey -M isearch " " magic-space
 
