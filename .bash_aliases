@@ -29,3 +29,4 @@ hostname=`hostname`
 [[ -e $HOME/.${hostname}_aliases ]] && source $HOME/.${hostname}_aliases
 
 alias h='fc -nl -15'
+alias vi="vim"

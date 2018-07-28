@@ -23,7 +23,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp nvm vi-mode)
+plugins=(python cp nvm vi-mode globalias)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -60,7 +60,6 @@ source ~/.bash_aliases
   #source /usr/share/nvm/init-nvm.sh
 #fi
 
-#source /etc/zsh_command_not_found
 CNF=/usr/share/doc/pkgfile/command-not-found.zsh
 [ -e $CNF ] && source $CNF
 
@@ -114,10 +113,12 @@ zle -N history-beginning-search-menu
 bindkey '^x^x' history-beginning-search-menu
 
 #TMUX
-TMUX_SESNAME=base
-if which tmux > /dev/null 2>&1; then
-  if [[ -z "$TMUX" && -e $HOME/.tmux/tmx.sh ]]; then
-    $HOME/.tmux/tmx.sh $TMUX_SESNAME
+if [[ ! $NONEX ]]; then
+  TMUX_SESNAME=base
+  if which tmux > /dev/null 2>&1; then
+    if [[ -z "$TMUX" && -e $HOME/.tmux/tmx.sh ]]; then
+      $HOME/.tmux/tmx.sh $TMUX_SESNAME
+    fi
   fi
 fi
 
@@ -125,3 +126,46 @@ export HISTSIZE=50000
 export SAVEHIST=5000
 setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks
 unsetopt incappendhistory
+
+env_default LESS '-RAiM'
+
+
+##
+## Completion
+###
+
+[[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
+
+autoload -U compinit
+compinit
+zmodload -i zsh/complist
+#setopt hash_list_all            # hash everything before completion
+#setopt completealiases          # complete aliases
+setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
+setopt complete_in_word         # allow completion from within a word/phrase
+setopt correct                  # spelling correction for commands
+setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
+zstyle ':completion:*' cache-path ~/.zsh/cache              # cache path
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
+zstyle ':completion:*' menu select=2                        # menu if nb items > 2
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
+
+# sections completion !
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
+zstyle ':completion:*:messages' format $'\e[00;31m%d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:manuals' separate-sections true
+
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
+zstyle ':completion:*:*:killall:*' menu yes select
+zstyle ':completion:*:killall:*' force-list always
+
+
