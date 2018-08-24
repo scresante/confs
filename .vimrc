@@ -132,6 +132,8 @@ let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pyflakes'] " 'pylint',
 let g:pymode_options_max_line_length=120
 let g:pymode_lint_ignore = "C0111"
 
+let g:jedi#popup_on_dot = 0
+
 set foldlevelstart=2
 set tabpagemax=60
 

@@ -23,7 +23,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(python cp vi-mode)
+plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -185,4 +185,6 @@ bindkey -M viins " " magic-space
 
 # normal space during searches
 bindkey -M isearch " " magic-space
+
+eval "$(pyenv init -)"
 
