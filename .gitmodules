@@ -1,42 +1,12 @@
-[submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/vim-node"]
-	path = .vim/bundle/vim-node
-	url = https://github.com/moll/vim-node.git
-[submodule ".vim/bundle/toggle_comment"]
-	path = .vim/bundle/toggle_comment
-	url = https://github.com/vim-scripts/toggle_comment.git
-[submodule ".vim/bundle/undotree"]
-	path = .vim/bundle/undotree
-	url = https://github.com/mbbill/undotree.git
 [submodule ".vim/bundle/vim-airline"]
 	path = .vim/bundle-unload/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
 [submodule ".vim/bundle/vim-airline-themes"]
 	path = .vim/bundle-unload/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule ".vim/bundle/vimwiki"]
-	path = .vim/bundle/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
-[submodule ".vim/bundle/vim-angular"]
-	path = .vim/bundle/vim-angular
-	url = https://github.com/burnettk/vim-angular.git
-[submodule ".vim/bundle/vim-javascript"]
-	path = .vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/python-mode"]
 	path = vim/bundle/python-mode
 	url = https://github.com/python-mode/python-mode.git
-[submodule ".tmux/plugins/tmux-yank"]
-	path = .tmux/plugins/tmux-yank
-	url = https://git::@github.com/tmux-plugins/tmux-yank
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule ".vim/bundle/vim-misc"]
 	path = .vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
@@ -46,10 +16,39 @@
 [submodule "/home/shawn/.vim/bundle/jedi-vim"]
 	path = /home/shawn/.vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
-[submodule ".vim/bundle/jedi-vim"]
-	path = .vim/bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+	branch = master
+[submodule ".vim/bundle/jedi-vim"]
+	path = .vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+	branch = master
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+	branch = master
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+	branch = master
+[submodule ".vim/bundle/toggle_comment"]
+	path = .vim/bundle/toggle_comment
+	url = https://github.com/vim-scripts/toggle_comment.git
+	branch = master
+[submodule ".vim/bundle/undotree"]
+	path = .vim/bundle/undotree
+	url = https://github.com/mbbill/undotree.git
+	branch = master
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = https://git::@github.com/tmux-plugins/tmux-sensible
+	branch = master
+[submodule ".tmux/plugins/tmux-yank"]
+	path = .tmux/plugins/tmux-yank
+	url = https://git::@github.com/tmux-plugins/tmux-yank
+	branch = master
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
 	branch = master
