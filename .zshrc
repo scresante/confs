@@ -188,5 +188,4 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-eval "$(pyenv init -)"
-
+[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
