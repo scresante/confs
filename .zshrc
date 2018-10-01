@@ -188,8 +188,7 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-eval "$(pyenv init -)"
+[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
 
 # override for oh-my-zsh needlessly aliasing ls against my will
 alias ls='ls --color=auto'
-[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
