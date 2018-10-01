@@ -30,3 +30,5 @@ hostname=`hostname`
 
 alias h='fc -nl -15'
 alias vi="vim"
+alias lsblk='lsblk -o NAME,MAJ:MIN,RM,TYPE,MOUNTPOINT,SIZE,FSTYPE,LABEL'
+

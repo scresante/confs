@@ -188,3 +188,5 @@ bindkey -M isearch " " magic-space
 
 eval "$(pyenv init -)"
 
+# override for oh-my-zsh needlessly aliasing ls against my will
+alias ls='ls --color=auto'
