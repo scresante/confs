@@ -5,30 +5,6 @@ source $HOME/.vim/mouse_toggle.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
 
-filetype off
-call pathogen#incubate()
-call pathogen#helptags()
-
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-let g:syntastic_php_checkers = ['phpcs']
-let g:syntastic_php_phpcs_args=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
-if has('statusline')
-  set laststatus=2
-  " Broken down into easily includeable segments
-  set statusline=[%<%{getcwd()}] " current dir
-  set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y] " filetype
-  set statusline+=\ %f\ " Filename
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_enable_signs=1
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
-endif
-
-execute pathogen#infect()
-
 " set all default TS to 2
 set shiftwidth=2
 set ts=2
