@@ -124,8 +124,8 @@ if [[ ! $NONEX ]]; then
   fi
 fi
 
-export HISTSIZE=50000
-export SAVEHIST=5000
+export HISTSIZE=200000
+export SAVEHIST=20000
 setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks
 unsetopt incappendhistory
 
