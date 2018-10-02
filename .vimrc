@@ -4,6 +4,7 @@ set nocompatible
 source $HOME/.vim/mouse_toggle.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
+source $HOME/.vim/vim-plug.vimrc
 
 " set all default TS to 2
 set shiftwidth=2
