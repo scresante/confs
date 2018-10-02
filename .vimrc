@@ -96,6 +96,9 @@ let g:relnum=1
 
 if has("persistent_undo")
   set undofile
+  if !isdirectory($HOME . "/.vim_undodir")
+    call mkdir($HOME . "/.vim_undodir", "p", 0700)
+  endif
   set undodir=~/.vim_undodir
 endif
 
