@@ -20,26 +20,6 @@
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
-[submodule ".vim/bundle/jedi-vim"]
-	path = .vim/bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
-	branch = master
-[submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-	branch = master
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-	branch = master
-[submodule ".vim/bundle/toggle_comment"]
-	path = .vim/bundle/toggle_comment
-	url = https://github.com/vim-scripts/toggle_comment.git
-	branch = master
-[submodule ".vim/bundle/undotree"]
-	path = .vim/bundle/undotree
-	url = https://github.com/mbbill/undotree.git
-	branch = master
 [submodule ".tmux/plugins/tmux-sensible"]
 	path = .tmux/plugins/tmux-sensible
 	url = https://git::@github.com/tmux-plugins/tmux-sensible
