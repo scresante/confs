@@ -7,8 +7,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
+"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 Plug 'vim-syntastic/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 "
 " Any valid git URL is allowed
 "Plug 'https://github.com/junegunn/vim-github-dashboard.git'

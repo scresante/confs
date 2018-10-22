@@ -1,7 +1,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="gianu"
+themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
+if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
+  ZSH_THEME=$themelist[$tn]
+  echo $ZSH_THEME
+else
+  ZSH_THEME="gianu"
+fi
+
 CASE_SENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
 # export UPDATE_ZSH_DAYS=13
