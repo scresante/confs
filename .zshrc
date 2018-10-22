@@ -199,3 +199,6 @@ bindkey -M isearch " " magic-space
 
 # override for oh-my-zsh needlessly aliasing ls against my will
 alias ls='ls --color=auto'
+
+export SURFRAW_graphical=no
+export SURFRAW_text_browser=/usr/bin/lynx
