@@ -11,6 +11,8 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'vim-syntastic/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 "
 " Any valid git URL is allowed
 "Plug 'https://github.com/junegunn/vim-github-dashboard.git'
