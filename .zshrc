@@ -6,7 +6,8 @@ if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
   ZSH_THEME=$themelist[$tn]
   echo $ZSH_THEME
 else
-  ZSH_THEME="gianu"
+  themes="fishy linuxonly obraun mh funky jtriley bira amuse duellj"
+  ZSH_THEME="sc"
 fi
 
 CASE_SENSITIVE="true"
