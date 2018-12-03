@@ -7,7 +7,7 @@ if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
   echo $ZSH_THEME
 else
   themes="fishy linuxonly obraun mh funky jtriley bira amuse duellj"
-  ZSH_THEME="sc"
+  ZSH_THEME="duellj"
 fi
 
 CASE_SENSITIVE="true"
@@ -144,8 +144,6 @@ env_default LESS '-RAiM'
 ## Completion
 ###
 
-[[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
-
 autoload -U compinit
 compinit
 zmodload -i zsh/complist
@@ -155,6 +153,13 @@ setopt always_to_end            # when completing from the middle of a word, mov
 setopt complete_in_word         # allow completion from within a word/phrase
 setopt correct                  # spelling correction for commands
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+[[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
+
+if [[ -e /etc/profile.d/google-cloud-sdk.sh && -e /etc/bash_completion.d/google-cloud-sdk ]]; then
+  autoload -U bashcompinit
+  bashcompinit # needed for gcloud
+  source /etc/bash_completion.d/google-cloud-sdk
+fi
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
