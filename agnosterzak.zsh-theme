@@ -71,60 +71,16 @@ prompt_context() {
   if [[ -n "$SSH_CLIENT" ]]; then
     prompt_segment magenta white "%{$fg_bold[white]%(!.%{%F{white}%}.)%}$USER@%m%{$fg_no_bold[white]%}"
   else
-    prompt_segment yellow magenta "%{$fg_bold[magenta]%(!.%{%F{magenta}%}.)%}@$USER%{$fg_no_bold[magenta]%}"
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
+  #if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    #prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
+  #fi
 
 # Battery Level
 prompt_battery() {
   HEART='♥ '
-
-  if [[ $(uname) == "Darwin" ]] ; then
-
-    function battery_is_charging() {
-      [ $(ioreg -rc AppleSmartBattery | grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]
-    }
-
-    function battery_pct() {
-      local smart_battery_status="$(ioreg -rc "AppleSmartBattery")"
-      typeset -F maxcapacity=$(echo $smart_battery_status | grep '^.*"MaxCapacity"\ =\ ' | sed -e 's/^.*"MaxCapacity"\ =\ //')
-      typeset -F currentcapacity=$(echo $smart_battery_status | grep '^.*"CurrentCapacity"\ =\ ' | sed -e 's/^.*CurrentCapacity"\ =\ //')
-      integer i=$(((currentcapacity/maxcapacity) * 100))
-      echo $i
-    }
-
-    function battery_pct_remaining() {
-      if battery_is_charging ; then
-        battery_pct
-      else
-        echo "External Power"
-      fi
-    }
-
-    function battery_time_remaining() {
-      local smart_battery_status="$(ioreg -rc "AppleSmartBattery")"
-      if [[ $(echo $smart_battery_status | grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]] ; then
-        timeremaining=$(echo $smart_battery_status | grep '^.*"AvgTimeToEmpty"\ =\ ' | sed -e 's/^.*"AvgTimeToEmpty"\ =\ //')
-        if [ $timeremaining -gt 720 ] ; then
-          echo "::"
-        else
-          echo "~$((timeremaining / 60)):$((timeremaining % 60))"
-        fi
-      fi
-    }
-
-    b=$(battery_pct_remaining)
-    if [[ $(ioreg -rc AppleSmartBattery | grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]] ; then
-      if [ $b -gt 50 ] ; then
-        prompt_segment green white
-      elif [ $b -gt 20 ] ; then
-        prompt_segment yellow white
-      else
-        prompt_segment red white
-      fi
-      echo -n "%{$fg_bold[white]%}$HEART$(battery_pct_remaining)%%%{$fg_no_bold[white]%}"
-    fi
-  fi
 
   if [[ $(uname) == "Linux" && -d /sys/module/battery ]] ; then
 
@@ -163,7 +119,6 @@ prompt_battery() {
       fi
       echo -n "%{$fg_bold[white]%}$HEART$(battery_pct_remaining)%%%{$fg_no_bold[white]%}"
     fi
-
   fi
 }
 
@@ -187,7 +142,7 @@ prompt_git() {
     git_status=$(git status --porcelain 2> /dev/null)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      clean='☑'
+      clean=''
       bgclr='yellow'
       fgclr='magenta'
     else
@@ -342,7 +297,7 @@ prompt_time() {
 prompt_status() {
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}%{$FX[blink]%}$RETVAL%{$FX[no-blink]%}$CROSS"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}%{$FX[blink]%}%B$RETVAL%b%{$FX[no-blink]%}$CROSS"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
 
@@ -355,9 +310,10 @@ build_prompt() {
   print -n "\n"
   prompt_status
   prompt_battery
-  prompt_time
+  #prompt_time
   prompt_virtualenv
   prompt_dir
+  #prompt_hg
   prompt_git
   prompt_end
   CURRENT_BG='NONE'
@@ -365,5 +321,17 @@ build_prompt() {
   prompt_context
   prompt_end
 }
+build_prompt2() {
+  RETVAL=$?
+  print -n "\n"
+  prompt_status
+  prompt_battery
+  prompt_context
+  prompt_dir
+  prompt_virtualenv
+  prompt_end
+  CURRENT_BG='NONE'
+}
 
-PROMPT='%{%f%b%k%}$(build_prompt) '
+PROMPT='%{%f%b%k%}$(build_prompt2) '
+RPROMPT="%{${reset_color}%}%B[%*]%b"

@@ -22,6 +22,10 @@ unset {R,L,}PROMPT PS{1..4}
 #RPROMPT='[%*]'
 #PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 
+#function cut path to size {
+# get length of user@host + []'s + everything but path <- minlen
+# get charwidth of window
+# set maxlen of path to charwidth-minlen
 PROMPT_PERCENT_OF_LINE=20
 # make a function, so that it can be evaluated repeatedly
 function myPromptWidth() { 
@@ -31,10 +35,8 @@ function myPromptWidth() {
 # intermediary variable
 width_part='$(myPromptWidth)'
 #
-#function cut path to size {
-# get length of user@host + []'s + everything but path <- minlen
-# get charwidth of window
-# set maxlen of path to charwidth-minlen
+# use ${} to evaluate the variable containing function
+PROMPT="%F{106}%${width_part}<…<%3~%f%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
 
 local dc=$FG[033]
 local blue_op="${dc}%B┌─[%b"
@@ -49,8 +51,8 @@ local retstat="%(?..${fg[red]}%B$FX[blink]%?$FX[no-blink]%b)$reset_color"
 local privd="%(!.#.$)"
 
 ## this works
-PROMPT=$'${blue_op}${user}${host}${pth}
-${dc}%B└─[${retstat}${privd}${dc}%B]%b%{${reset_color}%} '
-RPROMPT="%{${reset_color}%}%B[%*]%b"
-PS2=" ${dc}>${reset_color} "
+#PROMPT=$'${blue_op}${user}${host}${pth}
+#${dc}%B└─[${retstat}${privd}${dc}%B]%b%{${reset_color}%} '
+#RPROMPT="%{${reset_color}%}%B[%*]%b"
+#PS2=" ${dc}>${reset_color} "
 
