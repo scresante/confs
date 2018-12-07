@@ -2,15 +2,3 @@
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
-[submodule ".tmux/plugins/tmux-sensible"]
-	path = .tmux/plugins/tmux-sensible
-	url = https://git::@github.com/tmux-plugins/tmux-sensible
-	branch = master
-[submodule ".tmux/plugins/tmux-yank"]
-	path = .tmux/plugins/tmux-yank
-	url = https://git::@github.com/tmux-plugins/tmux-yank
-	branch = master
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-	branch = master
