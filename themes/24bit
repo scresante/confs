@@ -1,0 +1,32 @@
+#   The foreground escape sequence is ^[38;2;<r>;<g>;<b>m
+#   The background escape sequence is ^[48;2;<r>;<g>;<b>m
+#   <r> <g> <b> range from 0 to 255 inclusive.
+#   The escape sequence ^[0m returns output to default
+
+setFG()
+{
+	if [[ "${1:0:3}" == 'rgb' ]]; then
+        vals=( ${(ps.,.)${1:4:-1}} )
+        r=$vals[1]; g=$vals[2]; b=$vals[3]
+    else
+        r=$1; b=$2; g=$3
+    fi
+    printf '\x1b[38;2;%s;%s;%sm' $r $b $g
+}
+
+setBG()
+{
+	if [[ "${1:0:3}" == 'rgb' ]]; then
+        vals=( ${(ps.,.)${1:4:-1}} )
+        r=$vals[1]; g=$vals[2]; b=$vals[3]
+    else
+        r=$1; b=$2; g=$3
+    fi
+    printf '\x1b[48;2;%s;%s;%sm' $r $b $g
+}
+
+resetOutput()
+{
+    echo -en "\x1b[0m\n"
+}
+
