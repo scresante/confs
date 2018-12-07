@@ -30,3 +30,4 @@ augroup END
 "angular
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
 
+autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh

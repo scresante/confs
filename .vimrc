@@ -6,13 +6,16 @@ source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
 source $HOME/.vim/vim-plug.vimrc
 
-" set all default TS to 2
-set shiftwidth=2
-set ts=2
-set sts=2
+" set all default TS to 4??
+set shiftwidth=4
+set ts=4
+set sts=4
 set expandtab
 set autoindent
 set smartindent
+set smarttab
+set splitright
+set splitbelow
 
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -29,7 +32,7 @@ set backspace=indent,eol,start
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch
-set scrolloff=5
+set scrolloff=4
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')

@@ -58,4 +58,7 @@ nnoremap <leader>r :source ~/.vimrc<CR>
 "cnoremap help vert bo help
 
 nnoremap <leader><space> :noh<CR>
-
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>

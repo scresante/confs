@@ -7,7 +7,7 @@ if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
   echo $ZSH_THEME
 else
   themes="fishy linuxonly obraun mh funky jtriley bira amuse duellj"
-  ZSH_THEME="duellj"
+  ZSH_THEME="agnoster-sc"
 fi
 
 CASE_SENSITIVE="true"
@@ -31,7 +31,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git vagrant python cp)
-plugins=(vi-mode)
+plugins=(vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 
