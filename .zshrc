@@ -4,10 +4,8 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 
 themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
 if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
-  ZSH_THEME=$themelist[$tn]
-  echo $ZSH_THEME
+  ZSH_THEME=$themelist[$tn];  echo $ZSH_THEME
 else
-  themes="fishy linuxonly obraun mh funky jtriley bira amuse duellj"
   ZSH_THEME="agnoster-sc"
 fi
 
