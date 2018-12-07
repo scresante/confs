@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+ZSH_CUSTOM=$HOME/.zsh-custom
 
 themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
 if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
