@@ -1,17 +1,17 @@
 # vim:ft=zsh ts=2 sw=2 sts=2
-#
-# agnoster's Theme - https://gist.github.com/3712874
+
+# This is agnoster-sc.zsh-theme, an agnoster based theme with 24-bit color support
+
+# originally from agnoster's Theme - https://gist.github.com/3712874
+# using parts of agnosterzak and agnostererik
+
 # A Powerline-inspired theme for ZSH
 #
 # # README
 #
 # In order for this theme to render correctly, you will need a
 # [Powerline-patched font](https://gist.github.com/1595572).
-#
-# In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
+# [24-bit color support](https://www.linuxquestions.org/questions/slackware-14/tip-24-bit-true-color-terminal-tmux-vim-4175582631/)
 #
 # # Goals
 #
@@ -21,6 +21,7 @@
 # hostname to whether the last call exited with an error to whether background
 # jobs are running in this shell will all be displayed automatically when
 # appropriate.
+# Also, to make zsh theme building an easier, more modular experience.
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
@@ -36,10 +37,39 @@ CROSS="\u2718"
 LIGHTNING="\u26a1"
 GEAR="\u2699"
 
+# 24bit color functions
+# adapted from https://github.com/gnachman/iTerm2/blob/master/tests/24-bit-color.sh
+# usage: either 
+#   setFG $r $g $b
+# or
+#   setBG rgb($r,$g,$b)
+setFG()
+{
+	if [[ "${1:0:3}" == 'rgb' ]]; then
+        vals=( ${(ps.,.)${1:4:-1}} )
+        r=$vals[1]; g=$vals[2]; b=$vals[3]
+    else
+        r=$1; b=$2; g=$3
+    fi
+    printf '\x1b[38;2;%s;%s;%sm' $r $b $g
+}
+
+setBG()
+{
+	if [[ "${1:0:3}" == 'rgb' ]]; then
+        vals=( ${(ps.,.)${1:4:-1}} )
+        r=$vals[1]; g=$vals[2]; b=$vals[3]
+    else
+        r=$1; b=$2; g=$3
+    fi
+    printf '\x1b[48;2;%s;%s;%sm' $r $b $g
+}
+resetOutput() { echo -en "\x1b[0m\n" }
+
+prompt_segment() {
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
 # rendering default background/foreground.
-prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
@@ -52,8 +82,43 @@ prompt_segment() {
   [[ -n $3 ]] && print -n $3
 }
 
-# End the prompt, closing any open segments
+prompt_segment24bit() {
+# Begin a segment
+# Takes two arguments, background and foreground. Both can be omitted,
+# rendering default background/foreground.
+  local bg fg
+
+  if [[ -n $1 ]]; then
+    if [[ "${1:0:3}" == 'rgb' ]]; then
+      bg=$(setBG $1)
+    else
+      bg="%K{$1}"
+    fi
+  else
+    bg="%k"
+  fi
+
+  if [[ -n $2 ]]; then
+    if [[ "${1:0:3}" == 'rgb' ]]; then
+      bg=$(setBG $1)
+    else
+      fg="%F{$2}"
+    fi
+  else
+    fg="%f"
+  fi
+
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    print -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  else
+    print -n "%{$bg%}%{$fg%} "
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && print -n $3
+}
+
 prompt_end() {
+# End the prompt, closing any open segments
   if [[ -n $CURRENT_BG ]]; then
     print -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
   else
@@ -66,22 +131,27 @@ prompt_end() {
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
-# Context: user@hostname (who am I and where am I)
+prompt_dir() {
+# Dir: current working directory
+  #prompt_segment24bit "rgb(230,178,171)" yellow "%B%~%b"
+  prompt_segment blue yellow "%B%~%b"
+}
+
 prompt_context() {
   if [[ -n "$SSH_CLIENT" ]]; then
     prompt_segment magenta white "%{$fg_bold[white]%(!.%{%F{white}%}.)%}$USER@%m%{$fg_no_bold[white]%}"
   else
     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
-}
   #if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     #prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   #fi
+}
 
-# Battery Level
 prompt_battery() {
+# Battery Level
   HEART='♥ '
-
+# mac logic removed
   if [[ $(uname) == "Linux" && -d /sys/module/battery ]] ; then
 
     function battery_is_charging() {
@@ -109,21 +179,23 @@ prompt_battery() {
     }
 
     b=$(battery_pct_remaining)
+    if [ $b -gt 40 ] ; then
+      prompt_segment green white
+    elif [ $b -gt 20 ] ; then
+      prompt_segment yellow white
+    else
+      prompt_segment red white
+    fi
     if [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
-      if [ $b -gt 40 ] ; then
-        prompt_segment green white
-      elif [ $b -gt 20 ] ; then
-        prompt_segment yellow white
-      else
-        prompt_segment red white
-      fi
       echo -n "%{$fg_bold[white]%}$HEART$(battery_pct_remaining)%%%{$fg_no_bold[white]%}"
+    else
+      echo -n "%{$fg_bold[white]%}$LIGHTNING$(battery_pct_remaining)%%%{$fg_no_bold[white]%}"
     fi
   fi
 }
 
-# Git: branch/detached head, dirty status
 prompt_git() {
+# Git: branch/detached head, dirty status
 #«»±˖˗‑‐‒ ━ ✚‐↔←↑↓→↭⇎⇔⋆━◂▸◄►◆☀★☗☊✔✖❮❯⚑⚙
   local PL_BRANCH_CHAR
   () {
@@ -273,13 +345,8 @@ prompt_hg() {
   fi
 }
 
-# Dir: current working directory
-prompt_dir() {
-  prompt_segment cyan white "%{$fg_bold[white]%}%~%{$fg_no_bold[white]%}"
-}
-
-# Virtualenv: current working virtualenv
 prompt_virtualenv() {
+# Virtualenv: current working virtualenv
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     prompt_segment blue black "(`basename $virtualenv_path`)"
@@ -290,20 +357,22 @@ prompt_time() {
   prompt_segment blue white "%{$fg_bold[white]%}%D{%a %e %b - %H:%M}%{$fg_no_bold[white]%}"
 }
 
+prompt_status() {
 # Status:
 # - was there an error
 # - am I root
 # - are there background jobs?
-prompt_status() {
   local symbols
   symbols=()
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}%{$FX[blink]%}%B$RETVAL%b%{$FX[no-blink]%}$CROSS"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
-
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+prompt_history() {
+  print -n "[%{$(setFG 88 128 27)%}%h%{$(resetOutput)%}]"
+}
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -311,6 +380,7 @@ build_prompt() {
   prompt_status
   prompt_battery
   #prompt_time
+  prompt_context
   prompt_virtualenv
   prompt_dir
   #prompt_hg
@@ -318,20 +388,8 @@ build_prompt() {
   prompt_end
   CURRENT_BG='NONE'
   print -n "\n"
-  prompt_context
   prompt_end
-}
-build_prompt2() {
-  RETVAL=$?
-  print -n "\n"
-  prompt_status
-  prompt_battery
-  prompt_context
-  prompt_dir
-  prompt_virtualenv
-  prompt_end
-  CURRENT_BG='NONE'
 }
 
-PROMPT='%{%f%b%k%}$(build_prompt2) '
-RPROMPT="%{${reset_color}%}%B[%*]%b"
+PROMPT='%{%f%b%k%}$(build_prompt) '
+RPROMPT="%{${reset_color}%}$(prompt_history) %B[%*]%b"
