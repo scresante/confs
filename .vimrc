@@ -110,11 +110,6 @@ endif
 let g:airline_powerline_fonts = 1
 set diffopt=filler,iwhite,context:10
 
-let g:pymode_python = 'python3'
-let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pyflakes'] " 'pylint', 
-let g:pymode_options_max_line_length=120
-let g:pymode_lint_ignore = "C0111"
-
 let g:jedi#popup_on_dot = 0
 
 set foldlevelstart=2
@@ -127,6 +122,14 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-let g:solarized_termtrans=1
-colorscheme solarized8
-set background=dark
+" just set colorscheme because we know what it is
+let g:colorscheme="matrix"
+let g:colorscheme="briofita"
+let g:colorscheme="zenesque"
+let g:colorscheme="colorsbox-greenish"
+let g:colorscheme="gruvbox"
+execute 'colorscheme '.g:colorscheme
+
+" add function for <F7> to cycle to next color
+source $HOME/.vim/colors.vim
+hi! Normal ctermbg=NONE guibg=NONE

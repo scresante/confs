@@ -15,6 +15,7 @@ Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
+Plug 'flazz/vim-colorschemes'
 
 "
 " Any valid git URL is allowed
