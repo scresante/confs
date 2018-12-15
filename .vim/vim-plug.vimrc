@@ -16,6 +16,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
+Plug 'trusktr/seti.vim'
 
 "
 " Any valid git URL is allowed

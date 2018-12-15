@@ -18,8 +18,9 @@ nnoremap N Nzz
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 nnoremap <F3> <ESC>:tabp<Cr>
 nnoremap <F4> <ESC>:tabn<Cr>
-" write file and drop to explorer
-nnoremap <F9> <ESC>:w<Cr>:bro e<Cr>
+nnoremap <leader><F6> :execute 'colorscheme '.g:colorscheme<CR>
+nnoremap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
+nnoremap <F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
 
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq

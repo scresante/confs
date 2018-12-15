@@ -2,6 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 source $HOME/.vim/mouse_toggle.vimrc
+source $HOME/.vim/colors.vim
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
 source $HOME/.vim/vim-plug.vimrc
@@ -119,17 +120,11 @@ set tabpagemax=60
 set fdo-=block
 
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " just set colorscheme because we know what it is
-let g:colorscheme="matrix"
-let g:colorscheme="briofita"
-let g:colorscheme="zenesque"
-let g:colorscheme="colorsbox-greenish"
-let g:colorscheme="gruvbox"
+"let g:colorscheme="matrix"
+let g:colorscheme="seti"
 execute 'colorscheme '.g:colorscheme
 
-" add function for <F7> to cycle to next color
-source $HOME/.vim/colors.vim
-hi! Normal ctermbg=NONE guibg=NONE
