@@ -120,8 +120,8 @@ set tabpagemax=60
 set fdo-=block
 
 set termguicolors
-"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " just set colorscheme because we know what it is
 "let g:colorscheme="matrix"
