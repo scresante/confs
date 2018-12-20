@@ -25,6 +25,22 @@ function! SwitchColor(swinc)
 	redraw
 	execute "colorscheme"
     "echo "i is: ".i
-    hi! Normal ctermbg=NONE guibg=NONE
+    "hi! Normal ctermbg=NONE guibg=NONE
 endfunction
+
+let g:is_transparent = 0
+function! Toggle_transparent()
+    if g:is_transparent == 0
+        hi! Normal ctermbg=NONE guibg=NONE
+        let g:is_transparent = 1
+        echo 'g:is_transparent is ' . g:is_transparent
+        sleep 1
+    else
+        set bg=dark
+        let g:is_transparent = 0
+        echo 'g:is_transparent is ' . g:is_transparent
+        sleep 1
+    endif
+endfunction
+
 

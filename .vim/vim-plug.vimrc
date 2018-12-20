@@ -6,17 +6,19 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
+Plug 'pangloss/vim-javascript', { 'for': ['jsx','js','javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['jsx','js','javascript'] }
 Plug 'vim-syntastic/syntastic'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 Plug 'trusktr/seti.vim'
+"Plug 'itchyny/lightline.vim'
+"Plug 'mengelbrecht/lightline-bufferline'
 
 "
 " Any valid git URL is allowed
@@ -26,7 +28,6 @@ Plug 'trusktr/seti.vim'
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 "
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 "
 " Using a non-master branch

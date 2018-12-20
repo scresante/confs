@@ -125,6 +125,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " just set colorscheme because we know what it is
 "let g:colorscheme="matrix"
-let g:colorscheme="seti"
+let g:colorscheme="settlemyer"
 execute 'colorscheme '.g:colorscheme
 

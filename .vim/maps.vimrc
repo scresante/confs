@@ -18,8 +18,9 @@ nnoremap N Nzz
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 nnoremap <F3> <ESC>:tabp<Cr>
 nnoremap <F4> <ESC>:tabn<Cr>
-nnoremap <leader><F6> :execute 'colorscheme '.g:colorscheme<CR>
-nnoremap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
+nmap <leader><F6> :set bg=dark<CR>
+nmap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
+nnoremap <leader><F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
 nnoremap <F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
 
 " Don't use Ex mode, use Q for formatting
@@ -30,15 +31,15 @@ nnoremap Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 "" file-type specific maps
-autocmd FileType php map <F5> <ESC>:EnableFastPHPFolds<Cr>
-autocmd FileType php map <F6> <ESC>:EnablePHPFolds<Cr>
-autocmd FileType php map <F7> <ESC>:DisablePHPFolds<Cr>
 let g:DisableAutoPHPFolding = 1
+"autocmd FileType php map <F5> <ESC>:EnableFastPHPFolds<Cr>
+"autocmd FileType php map <F6> <ESC>:EnablePHPFolds<Cr>
+"autocmd FileType php map <F7> <ESC>:DisablePHPFolds<Cr>
 
-autocmd FileType python map <F5> <ESC>:w<CR>:!ipython -i %<CR>
-autocmd FileType python map <F6> <ESC>:w<CR>:!ipython3 -i %<CR>
-autocmd FileType python set foldmethod=manual
-autocmd FileType python set ts=4
+"autocmd FileType python map <F5> <ESC>:w<CR>:!ipython -i %<CR>
+"autocmd FileType python map <F6> <ESC>:w<CR>:!ipython3 -i %<CR>
+"autocmd FileType python set foldmethod=manual
+"autocmd FileType python set ts=4
 
 " center searches
 nnoremap n nzz
@@ -63,3 +64,10 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+
+" easier buffer navigation
+nnoremap <leader>\ :ls<CR>
+nnoremap <leader>1 :b1<CR>
+nnoremap <leader>2 :b2<CR>
+nnoremap <leader>3 :b3<CR>
+nnoremap <leader>4 :b4<CR>
