@@ -134,7 +134,7 @@ prompt_end() {
 prompt_dir() {
 # Dir: current working directory
   #prompt_segment24bit "rgb(230,178,171)" yellow "%B%~%b"
-  prompt_segment blue yellow "%B%~%b"
+  prompt_segment blue white "%B%~%b"
 }
 
 prompt_context() {
