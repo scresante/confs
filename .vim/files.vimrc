@@ -16,7 +16,7 @@ augroup END
 
 autocmd FileType perl set keywordprg=perldoc\ -f
 
-au! BufRead,BufNewFile *.json set filetype=json 
+au! BufRead,BufNewFile *.json set filetype=json
 augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
@@ -31,3 +31,12 @@ augroup END
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
 
 autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
+
+au! BufRead,BufNewFile *.pyw, *.py set filetype=python
+augroup python
+    autocmd!
+    autocmd FileType python set shiftwidth=4
+    autocmd FileType python set expandtab
+    autocmd FileType python match ExtraWhiteSpace /^\t\+/
+    let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing-docstring'] }
+augroup END

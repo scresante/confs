@@ -112,6 +112,7 @@ let g:airline_powerline_fonts = 1
 set diffopt=filler,iwhite,context:10
 
 let g:jedi#popup_on_dot = 0
+let g:jedi#rename_command = '<leader>R'
 
 set foldlevelstart=2
 set tabpagemax=60

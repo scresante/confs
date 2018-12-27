@@ -13,10 +13,9 @@ Plug 'mxw/vim-jsx', { 'for': ['jsx','js','javascript'] }
 Plug 'vim-syntastic/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
-Plug 'trusktr/seti.vim'
+Plug 'tpope/vim-unimpaired'
+"colors
+Plug 'flazz/vim-colorschemes' | Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
 "Plug 'itchyny/lightline.vim'
 "Plug 'mengelbrecht/lightline-bufferline'
 

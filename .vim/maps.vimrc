@@ -54,16 +54,16 @@ nnoremap <space> <C-f>zz
 nnoremap <Nul> <c-b>zz
 
 " reload vimrc
-nnoremap <leader>r :source ~/.vimrc<CR>
+noremap <leader>r :source ~/.vimrc<CR>
 
 " open help by default vert right
 "cnoremap help vert bo help
 
-nnoremap <leader><space> :noh<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+noremap <leader><space> :noh<CR>
+noremap <leader>j :wincmd j<CR>
+noremap <leader>h :wincmd h<CR>
+noremap <leader>k :wincmd k<CR>
+noremap <leader>l :wincmd l<CR>
 
 " easier buffer navigation
 nnoremap <leader>\ :ls<CR>
@@ -71,3 +71,8 @@ nnoremap <leader>1 :b1<CR>
 nnoremap <leader>2 :b2<CR>
 nnoremap <leader>3 :b3<CR>
 nnoremap <leader>4 :b4<CR>
+nnoremap <leader>5 :b5<CR>
+nnoremap <leader>6 :b6<CR>
+nnoremap <leader>7 :b7<CR>
+nnoremap <leader>8 :b8<CR>
+nnoremap <leader>9 :b9<CR>
