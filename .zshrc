@@ -6,7 +6,7 @@ themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
 if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
   ZSH_THEME=$themelist[$tn];  echo $ZSH_THEME
 else
-  ZSH_THEME="agnoster-sc"
+  ZSH_THEME="duellj"
 fi
 
 CASE_SENSITIVE="true"
