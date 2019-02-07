@@ -129,3 +129,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:colorscheme="settlemyer"
 execute 'colorscheme '.g:colorscheme
 
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set laststatus=2

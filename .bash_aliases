@@ -43,3 +43,5 @@ fi
 
 alias inst='sudo pacman -S --noconfirm'
 alias svi='sudo vim'
+alias updb='updatedb -U $HOME -l 0 -o $HOME/.locate.db'
+alias loc='locate -d $HOME/.locate.db'
