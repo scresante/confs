@@ -63,11 +63,6 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-augroup vimrcEx
-au!
-" For all text files set 'textwidth' to 78 characters.
-"  autocmd FileType text setlocal textwidth=78
-
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -76,7 +71,6 @@ autocmd BufReadPost *
 \ if line("'\"") > 1 && line("'\"") <= line("$") |
 \   exe "normal! g`\"" |
 \ endif
-"augroup END
 
 " Tell vim to remember certain things when we exit
 set viminfo='100,<1000,s50,:1000,%
@@ -89,7 +83,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
 
 set showmatch
 set guifont=Monospace\ 8
@@ -107,8 +100,7 @@ if has("persistent_undo")
   set undodir=~/.vim_undodir
 endif
 
-"let g:airline_theme='base16_summerfruit'
-let g:airline_powerline_fonts = 1
+set hidden " allow switching buffers without writing
 set diffopt=filler,iwhite,context:10
 
 let g:jedi#popup_on_dot = 0
@@ -117,18 +109,17 @@ let g:jedi#rename_command = '<leader>R'
 set foldlevelstart=2
 set tabpagemax=60
 
-" dont open folds with {} movement
-set fdo-=block
+set fdo-=block " dont open folds with {} movement
 
+" powerline, fonts, and colors
+"let g:airline_theme='base16_summerfruit'
+"let g:airline_powerline_fonts = 1
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-" just set colorscheme because we know what it is
 "let g:colorscheme="matrix"
 let g:colorscheme="settlemyer"
 execute 'colorscheme '.g:colorscheme
-
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
