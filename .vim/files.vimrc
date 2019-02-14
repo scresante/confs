@@ -52,4 +52,9 @@ let g:DisableAutoPHPFolding = 1
 "autocmd FileType python set foldmethod=manual
 "autocmd FileType python set ts=4
 
-autocmd FileType tex nnoremap <F5> :!latex % && zathura expand("%:r") . ".dvi"<CR>
+function! Complatex()
+    let newf = expand("%:r") . ".dvi"
+    silent let f = system('xelatex ' . expand("%") . ' && zathura ' . fnameescape(newf))
+endfunction
+
+autocmd FileType tex nnoremap <F5> :call Complatex()<CR>
