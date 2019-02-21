@@ -53,7 +53,7 @@ let g:DisableAutoPHPFolding = 1
 "autocmd FileType python set ts=4
 
 function! Complatex()
-    let newf = expand("%:r") . ".dvi"
+    let newf = expand("%:r") . ".pdf"
     silent let f = system('xelatex ' . expand("%") . ' && zathura ' . fnameescape(newf))
 endfunction
 
