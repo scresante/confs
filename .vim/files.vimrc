@@ -57,5 +57,13 @@ function! Complatex()
     silent let g:latex = system('xelatex ' . expand("%") . ' && zathura ' . fnameescape(newf))
 endfunction
 
+function! Counttex()
+    let newf = expand("%:r") . ".pdf"
+    silent let f = system('xelatex ' . expand("%") . ' && pdftotext ' .  fnameescape(newf))
+    let txtf = expand("%:r") . ".txt"
+    let wc = system('wc -w ' . fnameescape(txtf) . ' | cut -f1 -d" "')
+    echo wc
+endfunction
+
 autocmd FileType tex nnoremap <F5> :call Complatex()<CR>
-autocmd FileType tex set conceallevel=0
+autocmd FileType tex nnoremap <leader><F5> :call Counttex()<CR>
