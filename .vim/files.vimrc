@@ -54,7 +54,8 @@ let g:DisableAutoPHPFolding = 1
 
 function! Complatex()
     let newf = expand("%:r") . ".pdf"
-    silent let f = system('xelatex ' . expand("%") . ' && zathura ' . fnameescape(newf))
+    silent let g:latex = system('xelatex ' . expand("%") . ' && zathura ' . fnameescape(newf))
 endfunction
 
 autocmd FileType tex nnoremap <F5> :call Complatex()<CR>
+autocmd FileType tex set conceallevel=0
