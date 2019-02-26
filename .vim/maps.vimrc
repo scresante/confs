@@ -65,5 +65,5 @@ nnoremap <leader>6 :b6<CR>
 nnoremap <leader>7 :b7<CR>
 nnoremap <leader>8 :b8<CR>
 nnoremap <leader>9 :b9<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
+nnoremap <leader>b :bnext<CR>
+nnoremap <leader>B :bprev<CR>

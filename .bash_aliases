@@ -42,6 +42,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias inst='sudo pacman -S --noconfirm'
-alias svi='sudo vim'
+alias svi='sudo -E vim'
 alias updb='updatedb -U $HOME -l 0 -o $HOME/.locate.db'
 alias loc='locate -d $HOME/.locate.db'
