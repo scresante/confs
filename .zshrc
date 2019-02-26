@@ -57,16 +57,6 @@ source ~/.bash_aliases
 # user bin to path
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 
-### Added by the Heroku Toolbelt
-#[ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
-
-#export NVM_DIR="$HOME/.nvm"
-#if [ -x "$NVM_DIR/nvm.sh" ]; then
-  #echo loading nvm...
-  #source "$NVM_DIR/nvm.sh"
-  #source /usr/share/nvm/init-nvm.sh
-#fi
-
 CNF=/usr/share/doc/pkgfile/command-not-found.zsh
 [ -e $CNF ] && source $CNF
 
@@ -174,13 +164,6 @@ zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
 zstyle ':completion:*:messages' format $'\e[00;31m%d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
-
-zstyle ':completion:*:processes' command 'ps -au$USER'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
-zstyle ':completion:*:*:killall:*' menu yes select
-zstyle ':completion:*:killall:*' force-list always
 
 globalias() {
    zle _expand_alias
