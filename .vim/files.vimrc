@@ -65,5 +65,5 @@ function! Counttex()
     echo wc
 endfunction
 
-autocmd FileType tex nnoremap <F5> :call Complatex()<CR>
-autocmd FileType tex nnoremap <leader><F5> :call Counttex()<CR>
+autocmd FileType tex nnoremap <F4> :call Complatex()<CR>
+autocmd FileType tex nnoremap <leader><F4> :call Counttex()<CR>

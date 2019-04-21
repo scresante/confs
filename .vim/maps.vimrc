@@ -16,8 +16,8 @@ nnoremap n nzz
 nnoremap N Nzz
 
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
-nnoremap <F3> <ESC>:tabp<Cr>
-nnoremap <F4> <ESC>:tabn<Cr>
+"nnoremap <F3> <ESC>:tabp<Cr>
+"nnoremap <F4> <ESC>:tabn<Cr>
 nmap <leader><F6> :set bg=dark<CR>
 nmap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
 nnoremap <leader><F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
@@ -49,10 +49,10 @@ noremap <leader>r :source ~/.vimrc<CR>
 cnoremap vh vert bo help
 
 noremap <leader><space> :noh<CR>
-noremap <leader>j :wincmd j<CR>
-noremap <leader>h :wincmd h<CR>
-noremap <leader>k :wincmd k<CR>
-noremap <leader>l :wincmd l<CR>
+"noremap <leader>j :wincmd j<CR>
+"noremap <leader>h :wincmd h<CR>
+"noremap <leader>k :wincmd k<CR>
+"noremap <leader>l :wincmd l<CR>
 
 " easier buffer navigation
 nnoremap <leader>\ :ls<CR>
