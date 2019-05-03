@@ -35,8 +35,7 @@ autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
 au! BufRead,BufNewFile *.pyw, *.py set filetype=python
 augroup python
     autocmd!
-    autocmd FileType python set shiftwidth=4
-    autocmd FileType python set expandtab
+    autocmd FileType python set tabstop=8 expandtab shiftwidth=4 softtabstop=4
     autocmd FileType python match ExtraWhiteSpace /^\t\+/
     let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing-docstring'] }
 augroup END
