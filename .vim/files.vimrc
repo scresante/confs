@@ -40,12 +40,6 @@ augroup python
     let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing-docstring'] }
 augroup END
 
-"" file-type specific maps
-let g:DisableAutoPHPFolding = 1
-"autocmd FileType php map <F5> <ESC>:EnableFastPHPFolds<Cr>
-"autocmd FileType php map <F6> <ESC>:EnablePHPFolds<Cr>
-"autocmd FileType php map <F7> <ESC>:DisablePHPFolds<Cr>
-
 "autocmd FileType python map <F5> <ESC>:w<CR>:!ipython -i %<CR>
 "autocmd FileType python map <F6> <ESC>:w<CR>:!ipython3 -i %<CR>
 "autocmd FileType python set foldmethod=manual
