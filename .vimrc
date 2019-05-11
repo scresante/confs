@@ -25,11 +25,6 @@ match ExtraWhitespace /\s\+$/
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-"if has("vms")
-"  set nobackup		" do not keep a backup file, use versions instead
-"else
-"  set backup		" keep a backup file
-"endif
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch
@@ -112,12 +107,9 @@ set tabpagemax=60
 set fdo-=block " dont open folds with {} movement
 
 " powerline, fonts, and colors
-"let g:airline_theme='base16_summerfruit'
-"let g:airline_powerline_fonts = 1
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"let g:colorscheme="matrix"
 let g:colorscheme="settlemyer"
 execute 'colorscheme '.g:colorscheme
 python3 from powerline.vim import setup as powerline_setup
