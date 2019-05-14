@@ -11,10 +11,10 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': ['jsx','js','javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['jsx','js','javascript'] }
 Plug 'vim-syntastic/syntastic'
-Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-latex/vim-latex'
+Plug 'AndrewRadev/switch.vim'
 "Plug 'lervag/vimtex'
 "colors
 Plug 'flazz/vim-colorschemes' | Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'

@@ -18,6 +18,8 @@ nnoremap N Nzz
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 "nnoremap <F3> <ESC>:tabp<Cr>
 "nnoremap <F4> <ESC>:tabn<Cr>
+map <leader>[ <ESC>:bp<CR>
+map <leader>] <ESC>:bn<CR>
 nmap <leader><F6> :set bg=dark<CR>
 nmap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
 nnoremap <leader><F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
