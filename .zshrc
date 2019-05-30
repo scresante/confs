@@ -122,9 +122,9 @@ bindkey '^x^x' history-beginning-search-menu
 #fi
 
 export HISTSIZE=200000
-export SAVEHIST=20000
-setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks
+export SAVEHIST=170000
 unsetopt incappendhistory
+setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks histexpiredupsfirst
 
 env_default LESS '-RAiM'
 
