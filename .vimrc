@@ -117,3 +117,22 @@ python3 powerline_setup()
 python3 del powerline_setup
 set laststatus=2
 let g:indentLine_concealcursor=''
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_loc_list_height = 6
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+
+function! Searchall()
+    call inputsave()
+    let search = input('search for: ')
+    call inputrestore()
+    redraw
+    echo search
+    call setqflist([])
+    execute 'bufdo!' 'vimgrepadd!' '/'.expand(search).'/' '%'
+    cope
+endfunction
+map <F9> <ESC>:call Searchall()<CR>
