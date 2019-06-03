@@ -30,7 +30,7 @@ hostname=`hostname`
 alias h='fc -nl -15'
 alias vi="vim"
 alias lsblk='lsblk -o NAME,MAJ:MIN,RM,TYPE,MOUNTPOINT,SIZE,FSTYPE,LABEL'
-alias fmnt='findmnt -D -t notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
+alias fmnt='findmnt -D -t nobpf,nosquashfs,notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
