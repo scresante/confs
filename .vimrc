@@ -131,8 +131,10 @@ function! Searchall()
     call inputrestore()
     redraw
     echo search
-    call setqflist([])
+    "call setqflist([])
+    cex []
     execute 'bufdo!' 'vimgrepadd!' '/'.expand(search).'/' '%'
-    cope
+    "cope
+    cw
 endfunction
 map <F9> <ESC>:call Searchall()<CR>
