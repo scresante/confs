@@ -1,0 +1,3 @@
+xmodmap -e "remove Lock = Caps_Lock"
+set xkbdmap -option:ctrl:nocaps
+xmodmap -e 'keysym Caps_Lock = 0xffe1'
