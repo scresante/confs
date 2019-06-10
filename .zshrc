@@ -192,5 +192,3 @@ export SURFRAW_graphical=no
 export SURFRAW_text_browser=/usr/bin/lynx
 source $HOME/.zsh-colors
 
-#disable capslock, remap to shift
-source $HOME/.nocaps
