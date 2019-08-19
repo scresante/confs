@@ -99,6 +99,8 @@ set hidden " allow switching buffers without writing
 set diffopt=filler,iwhite,context:10
 
 let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
 let g:jedi#rename_command = '<leader>R'
 
 set foldlevelstart=2
