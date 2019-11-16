@@ -1,5 +1,5 @@
-alias ll='ls -alF'
-alias la='ls -A'
+alias ll='ls -AlF'
+alias la='ls -lA'
 alias l='ls -CF'
 
 # Some more alias to avoid making mistakes:
