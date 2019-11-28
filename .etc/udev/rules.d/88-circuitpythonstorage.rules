@@ -1,0 +1,16 @@
+KERNEL!="sd[a-z][0-9]", GOTO="cpx_by_sn_automount_end"
+ATTRS{vendor}=="Adafruit", ENV{vendor}="$attr{vendor}"
+ATTRS{serial}=="*", ENV{serial}="$attr{serial}"
+#import FS infos
+## this imports ID_FS_UUID
+IMPORT{program}="/usr/bin/blkid -o udev -p %N"
+IMPORT{program}="/bin/sh -c \"/usr/bin/echo serial=%E{serial} | /usr/bin/cut -c1-12\""
+# Get a label if present, otherwise specify one
+ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}-%E{serial}"
+ENV{dir_name}=="", ENV{dir_name}="%E{ID_FS_LABEL_FATBOOT}-%E{serial}"
+ACTION=="add", ENV{mount_options}="uid=1000,flush,sync"
+# Mount the device
+ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{vendor}=="Adafruit", RUN+="/usr/bin/systemd-mount --no-block --automount=yes --collect --owner=1000 --options=%E{mount_options} /dev/%k /media/%E{dir_name}"
+ACTION=="remove", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{vendor}=="Adafruit", RUN+="/usr/bin/systemd-mount --no-block --automount=yes --collect -u /dev/%k /media/%E{dir_name}"
+
+LABEL="cpx_by_sn_automount_end"
