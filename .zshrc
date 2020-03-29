@@ -1,20 +1,28 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-ZSH_CUSTOM=$HOME/.zsh-custom
+#export ZSH=$HOME/.oh-my-zsh
+#ZSH_CUSTOM=$HOME/.zsh-custom
 
-themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
-if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
-  ZSH_THEME=$themelist[$tn];  echo $ZSH_THEME
-else
-  ZSH_THEME="duellj"
-fi
+#themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
+#if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
+  #ZSH_THEME=$themelist[$tn];  echo $ZSH_THEME
+#else
+  #ZSH_THEME="duellj"
+#fi
+ZSH_THEME="example"
+#ZSH_THEME="rkj"
+#function retcode() {}
+#PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[%b%{\e[1;37m%}%~%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%Y-%m-%d %I:%M:%S"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
+#%{\e[0;34m%}%B└─%B[%{\e[1;35m%}%?$(retcode)%{\e[0;34m%}%B]%{\e[0m%}%b '
+plugins=(vi-mode z)
+source $ZSH/oh-my-zsh.sh
+#env_default LESS '-RAiM'
+
+#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 CASE_SENSITIVE="true"
-# DISABLE_AUTO_UPDATE="true"
-# export UPDATE_ZSH_DAYS=13
+DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
-# ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -24,15 +32,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#plugins=(git vagrant python cp)
-plugins=(vi-mode z)
-
-source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
 
@@ -126,7 +125,6 @@ export SAVEHIST=170000
 unsetopt incappendhistory
 setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks histexpiredupsfirst
 
-env_default LESS '-RAiM'
 
 
 ##
