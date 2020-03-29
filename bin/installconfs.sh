@@ -6,4 +6,8 @@ if (( $# < 1 )); then
     [[ $x != 'y' ]] && exit
 fi
 
+shopt -s dotglob
 
+mv * $HOME/
+
+sed -i '/powerline/d' ~/.tmux.conf
