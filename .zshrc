@@ -1,47 +1,12 @@
-# Path to your oh-my-zsh installation.
-#export ZSH=$HOME/.oh-my-zsh
-#ZSH_CUSTOM=$HOME/.zsh-custom
-
-#themelist=( $(ls ~/.oh-my-zsh/themes | cut -f1 -d'.') )
-#if [ -n "$tn" ] && ((tn >= 1 && tn <= $#themelist )); then
-  #ZSH_THEME=$themelist[$tn];  echo $ZSH_THEME
-#else
-  #ZSH_THEME="duellj"
-#fi
-ZSH_THEME="example"
-#ZSH_THEME="rkj"
-#function retcode() {}
-#PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[%b%{\e[1;37m%}%~%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%Y-%m-%d %I:%M:%S"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
-#%{\e[0;34m%}%B└─%B[%{\e[1;35m%}%?$(retcode)%{\e[0;34m%}%B]%{\e[0m%}%b '
-plugins=(vi-mode z)
-source $ZSH/oh-my-zsh.sh
 #env_default LESS '-RAiM'
-
-#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
+autoload -U colors && colors
+#autoload -U promptinit && promptinit
+source ~/.zsh-custom/themes/duellj.zsh-theme
 
 CASE_SENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="mm/dd/yyyy"
-
-export EDITOR='vim'
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-source ~/.bash_aliases
 
 # Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 # # Less Colors for Man Pages
@@ -53,40 +18,18 @@ source ~/.bash_aliases
  export LESS_TERMCAP_ue=$'\E[0m'           # end underline
  export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# user bin to path
-[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
-
-CNF=/usr/share/doc/pkgfile/command-not-found.zsh
-[ -e $CNF ] && source $CNF
-
 unsetopt auto_cd
 setopt extendedglob
 unsetopt nonomatch
 setopt nomatch
 setopt notify
-
-# fix up/down arrow bindings
-# start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "${terminfo[kcuu1]}" != "" ]]; then
-  autoload -U up-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-  bindkey "[A" up-line-or-beginning-search
-  bindkey "OA" up-line-or-beginning-search
-fi
-# start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "${terminfo[kcud1]}" != "" ]]; then
-  autoload -U down-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-  bindkey "[B" down-line-or-beginning-search
-  bindkey "OB" down-line-or-beginning-search
-fi
+setopt interactivecomments
 
 ###__   _____ __  __ __  __  ___  ___  ___
 ###\ \ / /_ _|  \/  |  \/  |/ _ \|   \| __|
 ### \ V / | || |\/| | |\/| | (_) | |) | _|
 ###  \_/ |___|_|  |_|_|  |_|\___/|___/|___|
 ###
-#  (enabled with omz plugin)
 export KEYTIMEOUT=1
 # fix home/end keys for vi mode!
 bindkey "^[OH" beginning-of-line
@@ -105,34 +48,44 @@ bindkey -M vicmd '[2~' vi-insert
 # bind alt-d for delete-word
 bindkey 'd' delete-word
 
+#vi mode candidates for mode indication
+#https://raw.githubusercontent.com/b4b4r07/zsh-vimode-visual/master/zsh-vimode-visual.zsh
+#https://raw.githubusercontent.com/softmoth/zsh-vim-mode/master/zsh-vim-mode.plugin.zsh
+#https://raw.githubusercontent.com/Nyquase/vi-mode/master/vi-mode.zsh
+
+
+###
+### HISTORY
+###
+# fix up/down arrow bindings
+# start typing + [Up-Arrow] - fuzzy find history forward
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+  autoload -U up-line-or-beginning-search
+  zle -N up-line-or-beginning-search
+  bindkey "[A" up-line-or-beginning-search
+  bindkey "OA" up-line-or-beginning-search
+fi
+# start typing + [Down-Arrow] - fuzzy find history backward
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+  autoload -U down-line-or-beginning-search
+  zle -N down-line-or-beginning-search
+  bindkey "[B" down-line-or-beginning-search
+  bindkey "OB" down-line-or-beginning-search
+fi
 ### AWESOME AUTOSEARCH MENU
 autoload -Uz history-beginning-search-menu
 zle -N history-beginning-search-menu
 bindkey '^x^x' history-beginning-search-menu
-
-#TMUX
-#if [[ ! $NONEX ]]; then
-  #TMUX_SESNAME=base
-  #if which tmux > /dev/null 2>&1; then
-    #if [[ -z "$TMUX" && -e $HOME/.tmux/tmx.sh ]]; then
-      #$HOME/.tmux/tmx.sh $TMUX_SESNAME
-    #fi
-  #fi
-#fi
-
-export HISTSIZE=200000
-export SAVEHIST=170000
 unsetopt incappendhistory
 setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks histexpiredupsfirst
-
-
+export HISTSIZE=200000
+export SAVEHIST=1000
+export HISTFILE=~/.zsh_history
 
 ##
 ## Completion
-###
-
-autoload -U compinit
-compinit
+##
+autoload -U compinit && compinit
 zmodload -i zsh/complist
 #setopt hash_list_all            # hash everything before completion
 #setopt completealiases          # complete aliases
@@ -140,14 +93,6 @@ setopt always_to_end            # when completing from the middle of a word, mov
 setopt complete_in_word         # allow completion from within a word/phrase
 setopt correct                  # spelling correction for commands
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
-[[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
-
-if [[ -e /etc/profile.d/google-cloud-sdk.sh && -e /etc/bash_completion.d/google-cloud-sdk ]]; then
-  autoload -U bashcompinit
-  bashcompinit # needed for gcloud
-  source /etc/bash_completion.d/google-cloud-sdk
-fi
-
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
 zstyle ':completion:*' cache-path ~/.zsh/cache              # cache path
@@ -155,13 +100,21 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
 zstyle ':completion:*' menu select=2                        # menu if nb items > 2
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
-
 # sections completion !
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
 zstyle ':completion:*:messages' format $'\e[00;31m%d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
+# completion / misc environment
+[[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
+if [[ -e /etc/profile.d/google-cloud-sdk.sh && -e /etc/bash_completion.d/google-cloud-sdk ]]; then
+  autoload -U bashcompinit && bashcompinit # needed for gcloud
+  source /etc/bash_completion.d/google-cloud-sdk
+fi
+[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
+CNF=/usr/share/doc/pkgfile/command-not-found.zsh
+[ -e $CNF ] && source $CNF
 
 globalias() {
    zle _expand_alias
@@ -169,22 +122,16 @@ globalias() {
    zle self-insert
 }
 zle -N globalias
-
 # space expands all aliases, including global
 bindkey -M emacs "^ " globalias
 bindkey -M viins "^ " globalias
-
 # control-space to make a normal space
 bindkey -M emacs " " magic-space
 bindkey -M viins " " magic-space
-
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
-
-# override for oh-my-zsh needlessly aliasing ls against my will
-alias ls='ls --color=auto'
-
 source $HOME/.zsh-colors
-
+export EDITOR='vim'
+source ~/.bash_aliases
+[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
