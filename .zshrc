@@ -76,10 +76,25 @@ fi
 autoload -Uz history-beginning-search-menu
 zle -N history-beginning-search-menu
 bindkey '^x^x' history-beginning-search-menu
-unsetopt incappendhistory
-setopt sharehistory histfcntllock histfindnodups histnostore histreduceblanks histexpiredupsfirst
-export HISTSIZE=200000
-export SAVEHIST=1000
+
+# Save  each command's beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file.
+setopt extendedhistory
+# When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
+setopt histfindnodups
+# remove command lines from the history list when the first character on the line is a space, or when one of the expanded aliases contains a leading space.
+setopt histignorespace
+
+# This option is a variant of INC_APPEND_HISTORY in which, where possible, the history entry is written out to the file after the command is finished, so that the time taken by the command is recorded  correctly  in  the history file in EXTENDED_HISTORY format.  This means that the history entry will not be available immediately from other instances of the shell that are using the same history file.  This option is only useful if INC_APPEND_HISTORY and SHARE_HISTORY are turned off.  The three options should be CONSIDERED MUTUALLY EXCLUSIVE.
+# If  you  find that you want more control over when commands get imported, you may wish to turn SHARE_HISTORY off, INC_APPEND_HISTORY or INC_APPEND_HISTORY_TIME (see above) on, and then manually import commands whenever you need them using `fc -RI'.
+setopt incappendhistorytime
+
+setopt histreduceblanks histexpiredupsfirst
+setopt histverify #Dont immediately execute history expansions
+setopt histfcntllock
+
+export HISTSIZE=30000
+export SAVEHIST=30000
+export HIST_STAMPS="%d/%m/%y %T"
 export HISTFILE=~/.zsh_history
 
 ##
@@ -99,7 +114,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache              # cache path
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
 zstyle ':completion:*' menu select=2                        # menu if nb items > 2
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate _expand_alias # list of completers to use
 # sections completion !
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
@@ -112,7 +127,7 @@ if [[ -e /etc/profile.d/google-cloud-sdk.sh && -e /etc/bash_completion.d/google-
   autoload -U bashcompinit && bashcompinit # needed for gcloud
   source /etc/bash_completion.d/google-cloud-sdk
 fi
-[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
+#[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
 CNF=/usr/share/doc/pkgfile/command-not-found.zsh
 [ -e $CNF ] && source $CNF
 

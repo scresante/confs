@@ -16,12 +16,13 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-latex/vim-latex'
 Plug 'AndrewRadev/switch.vim'
 Plug 'elzr/vim-json'
-Plug 'andrewstuart/aws-vim'
+"Plug 'andrewstuart/aws-vim'
 "Plug 'lervag/vimtex'
+
 "colors
 Plug 'flazz/vim-colorschemes' | Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
-"Plug 'itchyny/lightline.vim'
-"Plug 'mengelbrecht/lightline-bufferline'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 
 "
 " Any valid git URL is allowed

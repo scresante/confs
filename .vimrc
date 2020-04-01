@@ -104,19 +104,20 @@ let g:jedi#show_call_signatures = 0
 let g:jedi#rename_command = '<leader>R'
 
 set foldlevelstart=2
-set tabpagemax=60
+"set tabpagemax=40
 
 set fdo-=block " dont open folds with {} movement
 
-" powerline, fonts, and colors
+" lightline, fonts, and colors
+let g:lightline                  = {}
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:colorscheme="settlemyer"
 execute 'colorscheme '.g:colorscheme
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
 set laststatus=2
 let g:indentLine_concealcursor=''
 
