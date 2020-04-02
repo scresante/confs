@@ -114,7 +114,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache              # cache path
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
 zstyle ':completion:*' menu select=2                        # menu if nb items > 2
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate _expand_alias # list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
 # sections completion !
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
@@ -150,3 +150,7 @@ source $HOME/.zsh-colors
 export EDITOR='vim'
 source ~/.bash_aliases
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
+
+#export ZSH=$HOME/.oh-my-zsh
+#source $ZSH/oh-my-zsh.sh
+

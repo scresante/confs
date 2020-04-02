@@ -17,6 +17,7 @@ set smartindent
 set smarttab
 set splitright
 set splitbelow
+set ignorecase smartcase
 
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -109,10 +110,11 @@ set foldlevelstart=2
 set fdo-=block " dont open folds with {} movement
 
 " lightline, fonts, and colors
-let g:lightline                  = {}
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
+"let g:lightline                  = {}
+"let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+"let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+"let g:lightline.component_type   = {'buffers': 'tabsel'}
+"set tabline=2
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
