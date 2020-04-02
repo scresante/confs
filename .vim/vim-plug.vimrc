@@ -20,7 +20,7 @@ Plug 'elzr/vim-json'
 "Plug 'lervag/vimtex'
 
 "colors
-Plug 'flazz/vim-colorschemes' | Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
+Plug 'flazz/vim-colorschemes' "| Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 

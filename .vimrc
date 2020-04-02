@@ -2,7 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 source $HOME/.vim/mouse_toggle.vimrc
-source $HOME/.vim/colors.vim
+"source $HOME/.vim/colors.vim
 source $HOME/.vim/vim-plug.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
@@ -110,16 +110,19 @@ set foldlevelstart=2
 set fdo-=block " dont open folds with {} movement
 
 " lightline, fonts, and colors
-"let g:lightline                  = {}
+set noshowmode
+" alternative; wombat
+let g:lightline = { 'colorscheme': 'darcula', }
+colorscheme dracula
 "let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 "let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 "let g:lightline.component_type   = {'buffers': 'tabsel'}
 "set tabline=2
+
 set termguicolors
+" I forgot what this does:
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:colorscheme="settlemyer"
-execute 'colorscheme '.g:colorscheme
 set laststatus=2
 let g:indentLine_concealcursor=''
 
