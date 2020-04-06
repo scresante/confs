@@ -146,7 +146,7 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-source $HOME/.zsh-colors
+source $HOME/.zsh-custom/.zsh-colors
 export EDITOR='vim'
 source ~/.bash_aliases
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
