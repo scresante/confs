@@ -119,10 +119,6 @@ colorscheme dracula
 "let g:lightline.component_type   = {'buffers': 'tabsel'}
 "set tabline=2
 
-set termguicolors
-" I forgot what this does:
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set laststatus=2
 let g:indentLine_concealcursor=''
 

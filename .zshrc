@@ -1,6 +1,6 @@
 #env_default LESS '-RAiM'
 autoload -U colors && colors
-#autoload -U promptinit && promptinit
+autoload -U promptinit && promptinit
 source ~/.zsh-custom/themes/duellj.zsh-theme
 
 CASE_SENSITIVE="true"
@@ -154,3 +154,5 @@ source ~/.bash_aliases
 #export ZSH=$HOME/.oh-my-zsh
 #source $ZSH/oh-my-zsh.sh
 source $HOME/.nocaps
+# load per-host zsh customizations
+[ -e $HOME/.zsh-custom/$HOSTNAME ] && source $HOME/.zsh-custom/$HOSTNAME
