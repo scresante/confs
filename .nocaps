@@ -1,3 +1,13 @@
-xmodmap -e "remove Lock = Caps_Lock"
-set xkbdmap -option:ctrl:nocaps
-xmodmap -e 'keysym Caps_Lock = 0xffe1'
+#!/bin/sh
+
+# check if logged in via ssh
+if [ -z "$SSH_CLIENT" ]; then
+    # check if CapsLock is set
+    if [ ! -z "$(xmodmap -pk | grep Caps)" ]; then
+        xmodmap -e "remove Lock = Caps_Lock"
+        set xkbdmap -option:ctrl:nocaps
+        # remap capslock to super_l
+        # use 0xffe1 for shift_l
+        xmodmap -e 'keysym Caps_Lock = 0xffeb'
+    fi
+fi
