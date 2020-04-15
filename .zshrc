@@ -155,4 +155,4 @@ source ~/.bash_aliases
 #source $ZSH/oh-my-zsh.sh
 source $HOME/.nocaps
 # load per-host zsh customizations
-[ -e $HOME/.zsh-custom/$HOSTNAME ] && source $HOME/.zsh-custom/$HOSTNAME
+[ -e $HOME/.zsh-custom/`hostname` ] && source $HOME/.zsh-custom/`hostname`
