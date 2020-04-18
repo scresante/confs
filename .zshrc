@@ -151,8 +151,9 @@ export EDITOR='vim'
 source ~/.bash_aliases
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 
-#export ZSH=$HOME/.oh-my-zsh
-#source $ZSH/oh-my-zsh.sh
 source $HOME/.nocaps
 # load per-host zsh customizations
 [ -e $HOME/.zsh-custom/`hostname` ] && source $HOME/.zsh-custom/`hostname`
+
+#export ZSH=$HOME/.oh-my-zsh
+#source $ZSH/oh-my-zsh.sh
