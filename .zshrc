@@ -77,17 +77,10 @@ autoload -Uz history-beginning-search-menu
 zle -N history-beginning-search-menu
 bindkey '^x^x' history-beginning-search-menu
 
-# Save  each command's beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file.
 setopt extendedhistory
-# When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
 setopt histfindnodups
-# remove command lines from the history list when the first character on the line is a space, or when one of the expanded aliases contains a leading space.
 setopt histignorespace
-
-# This option is a variant of INC_APPEND_HISTORY in which, where possible, the history entry is written out to the file after the command is finished, so that the time taken by the command is recorded  correctly  in  the history file in EXTENDED_HISTORY format.  This means that the history entry will not be available immediately from other instances of the shell that are using the same history file.  This option is only useful if INC_APPEND_HISTORY and SHARE_HISTORY are turned off.  The three options should be CONSIDERED MUTUALLY EXCLUSIVE.
-# If  you  find that you want more control over when commands get imported, you may wish to turn SHARE_HISTORY off, INC_APPEND_HISTORY or INC_APPEND_HISTORY_TIME (see above) on, and then manually import commands whenever you need them using `fc -RI'.
-setopt incappendhistorytime
-
+setopt incappendhistorytime # works in zsh ⪆ 5.0.6
 setopt histreduceblanks histexpiredupsfirst
 setopt histverify #Dont immediately execute history expansions
 setopt histfcntllock
