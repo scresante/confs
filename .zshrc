@@ -154,5 +154,4 @@ source $HOME/.nocaps
 # ZSH ALIASES
 alias dh='dirs -v'
 alias h='fc -ln'
-alias vless='vim -u ~/.vim/less.rc -'
-alias history='fc -lfDn 1| vi -'
+alias history='fc -lfDn 1| vimless'
