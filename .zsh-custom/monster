@@ -1,1 +1,4 @@
-prompt elite2 yellow
+prompt fade blue
+#[ -z "$SSH_AGENT_PID" ] && eval `ssh-agent` && ssh-add $HOME/.ssh/jump
+alias inst="sudo yum -y install"
+export TERM='xterm-256color'
