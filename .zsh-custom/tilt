@@ -1,3 +1,1 @@
 prompt adam2 red
-unsetopt incappendhistorytime
-setopt sharehistory
