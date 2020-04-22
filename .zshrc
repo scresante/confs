@@ -25,6 +25,9 @@ setopt nomatch
 setopt notify
 setopt interactivecomments
 
+DIRSTACKSIZE=20
+setopt autopushd pushdminus pushdtohome
+
 ###__   _____ __  __ __  __  ___  ___  ___
 ###\ \ / /_ _|  \/  |  \/  |/ _ \|   \| __|
 ### \ V / | || |\/| | |\/| | (_) | |) | _|
@@ -148,5 +151,8 @@ source $HOME/.nocaps
 # load per-host zsh customizations
 [ -e $HOME/.zsh-custom/`hostname` ] && source $HOME/.zsh-custom/`hostname`
 
-#export ZSH=$HOME/.oh-my-zsh
-#source $ZSH/oh-my-zsh.sh
+# ZSH ALIASES
+alias dh='dirs -v'
+alias h='fc -ln'
+alias vless='vim -u ~/.vim/less.rc -'
+alias history='fc -lfDn 1| vi -'
