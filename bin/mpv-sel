@@ -1,0 +1,8 @@
+#!/bin/sh
+export DISPLAY=:0.0
+n="$(xsel -b 2>/dev/null)"
+notify-send "playing youtube on display $DISPLAY" "$n"
+echo -n "$(date) " >> /var/log/mpv.log
+echo -n "$n " >> /var/log/mpv.log
+curl -so- "$n" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/' >> /var/log/mpv.log
+mpv --profile=fastyt "$n"
