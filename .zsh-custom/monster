@@ -1,4 +1,4 @@
-prompt fade blue
+prompt clint
 #[ -z "$SSH_AGENT_PID" ] && eval `ssh-agent` && ssh-add $HOME/.ssh/jump
 alias inst="sudo yum -y install"
 export TERM='xterm-256color'

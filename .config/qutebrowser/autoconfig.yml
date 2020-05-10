@@ -6,22 +6,5 @@
 
 config_version: 2
 settings:
-  bindings.commands:
-    global:
-      normal:
-        ',U': hint links spawn -d mpv-play {hint-url}
-        ',u': spawn -d mpv-play {url}; close-tab
-        ;U: hint --rapid links spawn -d mpv-play {hint-url}
-        ;u: 'hint --rapid links spawn -d mpv-play {hint-url};; clear-keychain '
-        <Alt+Left>: back
-        <Alt+Right>: forward
-        <Alt+left: back
-        <Alt+right: forward
-        <Ctrl+Shift+r>: config-source
-        D: null
-        J: tab-prev
-        K: tab-next
-        d: null
-        x: tab-close
-  colors.webpage.prefers_color_scheme_dark:
-    global: true
+  content.cookies.store:
+    global: false

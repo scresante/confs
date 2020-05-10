@@ -11,10 +11,6 @@ nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
 
-" center display after searches
-nnoremap n nzz
-nnoremap N Nzz
-
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 noremap <F3> <ESC>:tabp<Cr>
 noremap <F4> <ESC>:tabn<Cr>
@@ -41,8 +37,8 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 
 " make space more useful
-nnoremap <space> <C-f>zz
-nnoremap <Nul> <c-b>zz
+nnoremap <space> <C-d>zz
+nnoremap <s-space> <c-u>zz
 
 " reload vimrc
 noremap <leader>r :source ~/.vimrc<CR>
