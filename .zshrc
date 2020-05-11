@@ -28,34 +28,13 @@ setopt interactivecomments
 DIRSTACKSIZE=20
 setopt autopushd pushdminus pushdtohome
 
-###__   _____ __  __ __  __  ___  ___  ___
-###\ \ / /_ _|  \/  |  \/  |/ _ \|   \| __|
-### \ V / | || |\/| | |\/| | (_) | |) | _|
-###  \_/ |___|_|  |_|_|  |_|\___/|___/|___|
-###
-export KEYTIMEOUT=1
-# fix home/end keys for vi mode!
-bindkey "^[OH" beginning-of-line
-bindkey -M vicmd "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
-bindkey -M vicmd "^[OF" end-of-line
-# fix home/end keys for vi mode in NATIVE TMUX!
-bindkey "[1~" beginning-of-line
-bindkey -M vicmd "[1~" beginning-of-line
-bindkey "[4~" end-of-line
-bindkey -M vicmd "[4~" end-of-line
-# fix del/ins key
-bindkey '[3~' delete-char
-bindkey -M vicmd '[3~' delete-char
-bindkey -M vicmd '[2~' vi-insert
-# bind alt-d for delete-word
-bindkey 'd' delete-word
-
-#vi mode candidates for mode indication
-#https://raw.githubusercontent.com/b4b4r07/zsh-vimode-visual/master/zsh-vimode-visual.zsh
-#https://raw.githubusercontent.com/softmoth/zsh-vim-mode/master/zsh-vim-mode.plugin.zsh
-#https://raw.githubusercontent.com/Nyquase/vi-mode/master/vi-mode.zsh
-
+source $HOME/.zsh-custom/zsh-vim-mode.plugin.zsh
+MODE_CURSOR_VIINS="#00ff00 blinking bar"
+MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
+MODE_CURSOR_VICMD="green block"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
+MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
 ###
 ### HISTORY
@@ -155,3 +134,4 @@ source $HOME/.nocaps
 alias dh='dirs -v'
 alias h='fc -ln'
 alias history='fc -lfDn 1| vimless'
+
