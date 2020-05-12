@@ -5,10 +5,6 @@ export EDITOR='vim'
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 source ~/.zsh-custom/themes/duellj.zsh-theme
-CASE_SENSITIVE="true"
-# DISABLE_LS_COLORS="true"
-# DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
 ### SET VIM AS MANPAGER ###
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma nornu nonu' -\""
 export LESS=-RAiMX
@@ -68,7 +64,6 @@ export HISTFILE=~/.zsh_history
 autoload -U compinit && compinit
 zmodload -i zsh/complist
 #setopt hash_list_all            # hash everything before completion
-#setopt completealiases          # complete aliases
 setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
 setopt complete_in_word         # allow completion from within a word/phrase
 setopt correct                  # spelling correction for commands
@@ -118,7 +113,3 @@ source $HOME/.nocaps
 
 ##############################      ALIASES      ##############################
 source ~/.bash_aliases
-alias dh='dirs -v'
-alias h='fc -ln'
-alias history='fc -lfDn 1| vimless'
-
