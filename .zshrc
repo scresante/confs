@@ -1,35 +1,23 @@
 ############################    BASIC SETTINGS    ############################
 export EDITOR='vim'
-source ~/.bash_aliases
-[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
-
-#env_default LESS '-RAiM'
+[ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
+[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 source ~/.zsh-custom/themes/duellj.zsh-theme
-
 CASE_SENSITIVE="true"
 # DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
-
-# Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
-# # Less Colors for Man Pages
- export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
- export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
- export LESS_TERMCAP_me=$'\E[0m'           # end mode
- export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
- export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - info box
- export LESS_TERMCAP_ue=$'\E[0m'           # end underline
- export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
+### SET VIM AS MANPAGER ###
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma nornu nonu' -\""
+export LESS=-RAiMX
 unsetopt auto_cd
 setopt extendedglob
 unsetopt nonomatch
 setopt nomatch
 setopt notify
 setopt interactivecomments
-
 DIRSTACKSIZE=20
 setopt autopushd pushdminus pushdtohome
 
@@ -128,7 +116,8 @@ source $HOME/.nocaps
 # load per-host zsh customizations
 [ -e $HOME/.zsh-custom/`hostname` ] && source $HOME/.zsh-custom/`hostname`
 
-# ZSH ALIASES
+##############################      ALIASES      ##############################
+source ~/.bash_aliases
 alias dh='dirs -v'
 alias h='fc -ln'
 alias history='fc -lfDn 1| vimless'
