@@ -1,3 +1,8 @@
+############################    BASIC SETTINGS    ############################
+export EDITOR='vim'
+source ~/.bash_aliases
+[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
+
 #env_default LESS '-RAiM'
 autoload -U colors && colors
 autoload -U promptinit && promptinit
@@ -28,6 +33,7 @@ setopt interactivecomments
 DIRSTACKSIZE=20
 setopt autopushd pushdminus pushdtohome
 
+##############################      VI MODE      ##############################
 source $HOME/.zsh-custom/zsh-vim-mode.plugin.zsh
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
 MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
@@ -36,9 +42,7 @@ MODE_CURSOR_SEARCH="#ff00ff steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
-###
-### HISTORY
-###
+##############################      HISTORY      ##############################
 # fix up/down arrow bindings
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
@@ -72,9 +76,7 @@ export SAVEHIST=30000
 export HIST_STAMPS="%d/%m/%y %T"
 export HISTFILE=~/.zsh_history
 
-##
-## Completion
-##
+##############################    COMPLETION    ##############################
 autoload -U compinit && compinit
 zmodload -i zsh/complist
 #setopt hash_list_all            # hash everything before completion
@@ -109,7 +111,6 @@ CNF=/usr/share/doc/pkgfile/command-not-found.zsh
 globalias() {
    zle _expand_alias
    zle expand-word
-   zle self-insert
 }
 zle -N globalias
 # space expands all aliases, including global
@@ -122,9 +123,6 @@ bindkey -M viins " " magic-space
 bindkey -M isearch " " magic-space
 
 source $HOME/.zsh-custom/.zsh-colors
-export EDITOR='vim'
-source ~/.bash_aliases
-[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 
 source $HOME/.nocaps
 # load per-host zsh customizations
