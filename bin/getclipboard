@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#use with watch to monitor clipboard
+
+truncate() {
+    lines=$(echo "$1" | wc -l)
+    echo ""
+    if (( "$lines" > 3 )) ; then
+        echo "$1" | head -n3
+        echo "[... and $lines more lines]"
+    else
+        echo "$1"
+    fi
+    echo '============'
+}
+
+echo primary:   "$(truncate "$(xsel -op)")"
+echo secondary: "$(truncate "$(xsel -os)")"
+echo clipboard: "$(truncate "$(xsel -ob)")"
