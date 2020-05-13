@@ -39,11 +39,12 @@ alias updb='updatedb -U $HOME -l 0 -o $HOME/.locate.db'
 alias loc='locate -d $HOME/.locate.db'
 
 if [[ ${SHELL##*/} = 'zsh' ]]; then
-      alias sizes='du -shc -- *(D) | sort -h'
-  else
-      alias sizes='du -shc -- * | sort -h'
+    alias sizes='du -shc -- *(D) | sort -h'
+    alias history='fc -lfnD 1'
+else
+    alias sizes='du -shc -- * | sort -h'
+    alias history='fc -lf 1'
 fi
 
 alias dh='dirs -v'
 alias h='fc -ln'
-alias history='fc -lfDn 1| vimless'
