@@ -4,7 +4,7 @@ export EDITOR='vim'
 [ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
 autoload -U colors && colors
 autoload -U promptinit && promptinit
-source ~/.zsh-custom/themes/duellj.zsh-theme
+source ~/.config/zsh/themes/duellj.zsh-theme
 ### SET VIM AS MANPAGER ###
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma nornu nonu' -\""
 export LESS=-RAiMX
@@ -18,7 +18,7 @@ DIRSTACKSIZE=20
 setopt autopushd pushdminus pushdtohome
 
 ##############################      VI MODE      ##############################
-source $HOME/.zsh-custom/zsh-vim-mode.plugin.zsh
+source $HOME/.config/zsh/zsh-vim-mode.plugin.zsh
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
 MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
 MODE_CURSOR_VICMD="green block"
@@ -105,11 +105,11 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-source $HOME/.zsh-custom/.zsh-colors
+source $HOME/.config/zsh/.zsh-colors
 
 source $HOME/.nocaps
 # load per-host zsh customizations
-[ -e $HOME/.zsh-custom/`hostname` ] && source $HOME/.zsh-custom/`hostname`
+[ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
 
 ##############################      ALIASES      ##############################
 source ~/.bash_aliases
