@@ -1,3 +1,5 @@
+# vim: ft=udevrules
+
 KERNEL!="sd[a-z][0-9]", GOTO="cpx_by_sn_automount_end"
 ATTRS{vendor}=="Adafruit", ENV{vendor}="$attr{vendor}"
 ATTRS{serial}=="*", ENV{serial}="$attr{serial}"
