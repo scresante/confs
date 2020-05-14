@@ -43,7 +43,7 @@ if [[ ${SHELL##*/} = 'zsh' ]]; then
     alias history='fc -lfnD 1'
 else
     alias sizes='du -shc -- * | sort -h'
-    alias history='fc -lf 1'
+    alias history='fc -l 1'
 fi
 
 alias dh='dirs -v'
