@@ -142,3 +142,4 @@ function! Searchall()
     cw
 endfunction
 map <F9> <ESC>:call Searchall()<CR>
+

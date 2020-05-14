@@ -66,3 +66,8 @@ nnoremap <leader>9 :b9<CR>
 nnoremap <leader>b :bnext<CR>
 nnoremap <leader>B :bprev<CR>
 
+" fix ctrl + arrows
+map [1;5D <C-Left>
+map [1;5C <C-right>
+map [1;5A <C-up>
+map [1;5B <C-down>
