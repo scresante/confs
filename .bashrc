@@ -97,4 +97,4 @@ if ! shopt -oq posix; then
 fi
 
 set -o vi
-
+PATH=$HOME/.local/bin:$HOME/bin:$PATH
