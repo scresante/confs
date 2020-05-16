@@ -38,7 +38,7 @@ alias uninst='sudo pacman -Rnc --noconfirm'
 }
 command -v expac >/dev/null 2>&1 && {
 alias pkgsize='expac -H M "%m\t%n" | sort -h | tail'
-alias pkglast="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 30"
+alias pkglast="expac --timefmt='%Y-%m-%d %T' '%l %n %v' | sort | tail -n 30"
 }
 
 command -v apt-get >/dev/null 2>&1 && {
