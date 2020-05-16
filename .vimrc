@@ -111,13 +111,28 @@ set fdo-=block " dont open folds with {} movement
 
 " lightline, fonts, and colors
 set noshowmode
-" alternative; wombat
-let g:lightline = { 'colorscheme': 'darcula', }
-colorscheme dracula
-"let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-"let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-"let g:lightline.component_type   = {'buffers': 'tabsel'}
-"set tabline=2
+let g:lightline#bufferline#show_number = 1
+"let g:lightline#bufferline#read_only = ' [RO]'
+"let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#shorten_path = 0
+" hide path completely
+"let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline = {
+    \ 'colorscheme': 'one',
+    \ 'active': {'left': [ [ 'mode', 'paste' ], ['readonly','modified' ], ['buffers']] },
+    \ 'tabline': {'left': [['buffers']], 'right': [['close']]},
+    \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
+    \ 'component_type': {'buffers': 'tabsel'}
+    \ }
+set showtabline=1
+
+set bg=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_italic=0
+let g:gruvbox_italicize_comments=0
+let g:gruvbox_italicize_strings=0
+colorscheme gruvbox
 
 set laststatus=2
 let g:indentLine_concealcursor=''
@@ -127,7 +142,6 @@ let g:syntastic_loc_list_height = 6
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-
 
 function! Searchall()
     call inputsave()

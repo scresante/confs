@@ -20,11 +20,14 @@ Plug 'elzr/vim-json'
 "Plug 'lervag/vimtex'
 
 "colors
-Plug 'flazz/vim-colorschemes' "| Plug 'morhetz/gruvbox' | Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
+"Plug 'flazz/vim-colorschemes' "| Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 
-"
 " Any valid git URL is allowed
 "Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 "
