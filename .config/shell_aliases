@@ -1,3 +1,4 @@
+# vim: ft=sh:syn=sh
 alias vi="vim"
 
 alias ll='ls -AlF'
@@ -17,9 +18,6 @@ alias gst="git status"
 alias gsh="git show"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 
-alias pacsize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqen | sort) <(pacman -Qqg base base-devel | sort )) | sort -n'
-alias paclast="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 30"
-
 alias lsblk='lsblk -o NAME,MAJ:MIN,RM,TYPE,MOUNTPOINT,SIZE,FSTYPE,LABEL'
 alias fmnt='findmnt -D -t nobpf,nosquashfs,notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
 
@@ -32,15 +30,43 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+
+########### DISTRO specific aliases ##############
+command -v pacman >/dev/null 2>&1 && {
 alias inst='sudo pacman -S --noconfirm'
 alias uninst='sudo pacman -Rnc --noconfirm'
+}
+command -v expac >/dev/null 2>&1 && {
+alias pkgsize='expac -H M "%m\t%n" | sort -h | tail'
+alias pkglast="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 30"
+}
+
+command -v apt-get >/dev/null 2>&1 && {
+alias inst='sudo apt-get -y install'
+alias uninst='sudo apt-get -y uninstall'
+alias pkgsize="dpkg-query -W -f='${Installed-Size} ${Package}\n' | sort -n | tail"
+alias pkglast="grep ' installed' /var/log/dpkg.log | tail -n 30"
+}
+
+command -v dnf >/dev/null 2>&1 && {
+alias inst='sudo dnf -y install'
+alias uninst='sudo dnf -y remove'
+alias pkgsize="rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n"
+alias pkglast='rpm -qa --last | tail -n30'
+}
+
 alias svi='sudo -E vim'
 alias updb='updatedb -U $HOME -l 0 -o $HOME/.locate.db'
 alias loc='locate -d $HOME/.locate.db'
 
+############ ZSH specific aliases #################
 if [[ ${SHELL##*/} = 'zsh' ]]; then
     alias sizes='du -shc -- *(D) | sort -h'
     alias history='fc -lfnD 1'
+    alias -g '...=../..'
+    alias -g '....=../../..'
+    alias -g '.....=../../../..'
+    alias -g '......=../../../../..'
 else
     alias sizes='du -shc -- * | sort -h'
     alias history='fc -l 1'
@@ -48,3 +74,4 @@ fi
 
 alias dh='dirs -v'
 alias h='fc -ln'
+

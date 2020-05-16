@@ -55,6 +55,7 @@ setopt histreduceblanks histexpiredupsfirst
 setopt histverify #Dont immediately execute history expansions
 setopt histfcntllock
 
+HISTORY_IGNORE='(l[a,l,s,h,]*|cd|sizes|echo)'
 export HISTSIZE=30000
 export SAVEHIST=30000
 export HIST_STAMPS="%d/%m/%y %T"
@@ -112,4 +113,4 @@ source $HOME/.nocaps
 [ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
 
 ##############################      ALIASES      ##############################
-source ~/.bash_aliases
+source $HOME/.config/shell_aliases
