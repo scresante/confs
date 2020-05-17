@@ -125,7 +125,10 @@ let g:lightline = {
     \   'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ] ]
     \  },
     \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
-    \ 'component_type': {'buffers': 'tabsel'}
+    \ 'component_type': {'buffers': 'tabsel'},
+    \ 'component': {
+    \   'lineinfo': '%3l:%-2v%<',
+    \   }
     \ }
 set showtabline=1
 
