@@ -69,7 +69,7 @@ autocmd BufReadPost *
 \ endif
 
 " Tell vim to remember certain things when we exit
-set viminfo='100,<1000,s50,:1000,%
+set viminfo='100,<500,s50,:1000,%
 set history=1000
 
 " Convenient command to see the difference between the current buffer and the
@@ -110,7 +110,7 @@ set foldlevelstart=2
 set fdo-=block " dont open folds with {} movement
 
 " lightline, fonts, and colors
-set noshowmode
+"set noshowmode
 let g:lightline#bufferline#show_number = 1
 "let g:lightline#bufferline#read_only = ' [RO]'
 "let g:lightline#bufferline#unnamed = '[No Name]'
@@ -120,8 +120,10 @@ let g:lightline#bufferline#shorten_path = 0
 "let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline = {
     \ 'colorscheme': 'one',
-    \ 'active': {'left': [ [ 'mode', 'paste' ], ['readonly','modified' ], ['buffers']] },
-    \ 'tabline': {'left': [['buffers']], 'right': [['close']]},
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], ['readonly','modified' ], ['buffers'] ],
+    \   'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ] ]
+    \  },
     \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
     \ 'component_type': {'buffers': 'tabsel'}
     \ }
