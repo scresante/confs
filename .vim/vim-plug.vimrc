@@ -16,6 +16,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-latex/vim-latex'
 Plug 'AndrewRadev/switch.vim'
 Plug 'elzr/vim-json'
+Plug 'chr4/nginx.vim'
 "Plug 'andrewstuart/aws-vim'
 "Plug 'lervag/vimtex'
 
