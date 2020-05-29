@@ -18,6 +18,9 @@ alias gst="git status"
 alias gsh="git show"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 
+alias yst="yadm status"
+alias yp="yadm pull && yadm push all"
+
 alias lsblk='lsblk -o NAME,MAJ:MIN,RM,TYPE,MOUNTPOINT,SIZE,FSTYPE,LABEL'
 alias fmnt='findmnt -D -t nobpf,nosquashfs,notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
 

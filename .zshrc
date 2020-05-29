@@ -1,4 +1,6 @@
 ############################    BASIC SETTINGS    ############################
+set xkbdmap -option:caps:escape
+[ -z "$SSH_CLIENT" ] && export DISPLAY=:0
 export EDITOR='vim'
 [ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
 [ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
@@ -108,9 +110,8 @@ bindkey -M isearch " " magic-space
 
 source $HOME/.config/zsh/.zsh-colors
 
-source $HOME/.nocaps
 # load per-host zsh customizations
 [ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
 
 ##############################      ALIASES      ##############################
-source $HOME/.config/shell_aliases
+source $HOME/.config/aliases

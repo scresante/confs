@@ -1,13 +1,24 @@
 #!/bin/sh
 
+#the only thing that was needed was
+set xkbdmap -option:caps:escape
+
+# normal caps lock and escape
+#xmodmap -e "remove lock =  0x42"
+#xmodmap -e "keycode 0x9 = Escape"
+#xmodmap -e "keycode 0x42 = Caps_Lock"
+#xmodmap -e "add lock = Caps_Lock"
+
 # check if logged in via ssh
-if [ -z "$SSH_CLIENT" ]; then
-    # check if CapsLock is set
-    if [ ! -z "$(xmodmap -pk | grep Caps)" ]; then
-        xmodmap -e "remove Lock = Caps_Lock"
-        set xkbdmap -option:ctrl:nocaps
-        # remap capslock to super_l
-        # use 0xffe1 for shift_l
-        xmodmap -e 'keysym Caps_Lock = 0xffeb'
-    fi
-fi
+#if [ -z "$SSH_CLIENT" ]; then
+    ## check if CapsLock is set
+    #if [ ! -z "$(xmodmap -pk | grep Caps)" ]; then
+        #xmodmap -e 'clear Lock'
+        #xmodmap -e "remove Lock = Caps_Lock"
+        ##set xkbdmap -option:ctrl:nocaps
+
+        ## remap capslock to super_l
+        ## use 0xffe1 for shift_l
+        #xmodmap -e 'keysym Caps_Lock = 0xffeb'
+    #fi
+#fi
