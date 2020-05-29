@@ -38,6 +38,7 @@ fi
 command -v pacman >/dev/null 2>&1 && {
 alias inst='sudo pacman -S --noconfirm'
 alias uninst='sudo pacman -Rnc --noconfirm'
+alias pacup='sudo pacman -Syyu'
 }
 command -v expac >/dev/null 2>&1 && {
 alias pkgsize='expac -H M "%m\t%n" | sort -h | tail'

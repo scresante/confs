@@ -1,6 +1,6 @@
 ############################    BASIC SETTINGS    ############################
-set xkbdmap -option:caps:escape
-[ -z "$SSH_CLIENT" ] && export DISPLAY=:0
+#set xkbdmap -option:caps:escape
+#[ -z "$SSH_CLIENT" ] && export DISPLAY=:0
 export EDITOR='vim'
 [ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
 [ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
