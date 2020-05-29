@@ -1,0 +1,69 @@
+#!/bin/bash
+vmname=container-linux2
+
+confpath=/var/lib/libvirt/container-linux/${vmname}
+ignition_file=$confpath/provision.ign
+ctfile=$confpath/provision.yaml
+ip="192.168.122.2"
+mac="52:54:00:fe:b3:c0"
+isodir=/data/iso
+imagedir=/data/virtmach/images
+
+#echo -n "create a password for $vmname: "
+#hashedpass=$(python -c "import crypt,random,string; print(crypt.crypt(input(), '\$6\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)])))")
+
+sudo virsh domid $vmname >/dev/null 2>&1 && sudo virsh destroy $vmname; sudo virsh undefine --remove-all-storage --domain $vmname
+
+sudo mkdir -vp "$confpath"
+sudo chown -R $USER $confpath
+
+cat << EOF > $ctfile
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+  - path: /etc/hostname
+    filesystem: "root"
+    contents:
+      inline: "${vmname}"
+
+passwd:
+  users:
+    - name: core
+      #password_hash: "$hashedpass"
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKuV40g+y6pDQdGFV6+f5f6Tj3LNsD0evNNvRZOJAkV shawn@monster"
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDF1ZwnsYgLUJu4YNj3SPyo1WGRRLpZjy6cVpelX54+JIqA/k3/N2a1nlq/Fuwt6F7YzwD6gsVf5DbrJQHkAArCPWDWZ8qIaImd8pyqOWwA6iy0etkK8e3kLMS96eO0WKcyasIogJ+gIrApwk6w60R2ZBzelfYwbKdF17Esp6aNVGDrNoZOz+/38RST5vViwOo26e4Znx93YH7s/GMk4f68D5brsfgr3dQaC0rbYq4Ai0u7NhpqA5JpOqGLvUbPmb9izh8S3wNKpWFTDozdJ+Rj+cdMjv9T5mLNk24kaViazwiT4/jAn7d72QeMtsCJONvhtGutOIYGLqB9WNUnIyJCRgGEHmKQNe0xsV0osSRSmghjdWrTAnw0+nQxfwnrfSGVSp8W0fnIjkOMhP5yyRD79nmk7s79ph5xS8ycedt5mOKWBaERUt6Ik+dJRhZVk2smYf4Tdj4bWXus6vcOrj7t75M9Xjwqj9gPkI+sZBH3Bq27xsnWiQ2KVOKUqnvAVXc= shawn@monster"
+EOF
+
+fcct -o $ignition_file $ctfile
+
+echo create image
+image=coreos_production_qemu_image.img
+image=fedora-coreos-32next.qcow2
+sudo -u qemu qemu-img create -f qcow2 -b $isodir/$image $imagedir/${vmname}.qcow2 30G
+
+echo update network
+# dont try to update network if there is already a dhcp rule
+[[ $(sudo virsh net-dhcp-leases default --mac $mac | grep $mac) ]] || \
+    sudo virsh net-update --network "default" add-last ip-dhcp-host \
+        --xml "<host mac='${mac}' ip='${ip}' />" \
+        --live --config
+
+echo create $vmname
+sudo virt-install --connect qemu:///system --import \
+  --name ${vmname} \
+  --ram 4024 --vcpus 4 \
+  --os-type=linux \
+  --os-variant=fedora31 \
+  --disk path=$imagedir/${vmname}.qcow2,format=qcow2,bus=virtio \
+  --network bridge=virbr0,mac=${mac} \
+  --vnc --noautoconsole \
+  --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${ignition_file}"
+
+sudo chown -R qemu $confpath
+#sudo virsh start ${vmname}
+echo wait to start...
+sleep 10
+sudo virsh domdisplay $vmname --type=vnc
+sha512sum $ctfile
