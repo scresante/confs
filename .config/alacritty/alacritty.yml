@@ -141,10 +141,10 @@ font:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
-  animation: EaseOutQuad
-  duration: 200
-  color: '#3f0060'
+#visual_bell:
+  #animation: EaseOutQuad
+  #duration: 200
+  #color: '#3f0060'
 
 # Background opacity
 #
