@@ -10,3 +10,5 @@ settings:
     global: true
   colors.webpage.prefers_color_scheme_dark:
     global: true
+  content.notifications:
+    https://www.facebook.com: true

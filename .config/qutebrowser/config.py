@@ -129,6 +129,7 @@ config.bind('<shift+space>', 'scroll-page 0 -0.9')
 
 config.set('tabs.last_close', 'close')
 config.set('session.default_name', 'defaultsession')
+config.set('session.lazy_restore', True)
 
 config.bind('ZQ', 'quit')
 config.bind('ZZ', 'restart')

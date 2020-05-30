@@ -1,2 +1,4 @@
 *.pyc
 .netrwhist
+~/.config/qutebrowser/autoconfig.yml
+
