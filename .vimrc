@@ -26,6 +26,8 @@ match ExtraWhitespace /\s\+$/
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+set cul
+set culopt=number
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch

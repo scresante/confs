@@ -15,3 +15,32 @@ function! EnterNormalMode()
 endfunction
 
 tmap <silent> <ScrollWheelUp> <c-w>:call EnterNormalMode()<CR>
+
+"a function that takes output from command mode puts into a split
+function! TabMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+    " use "new" instead of "tabnew" below if you prefer split windows instead of tabs
+    new
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
+
+" for fixing cursor
+if exists('$TMUX')
+    "let &t_EI = "\<Esc>PTmux;\e[1 q"
+    let &t_EI = "\e[1 q"
+    "let &t_SI = "\<Esc>PTmux;\e[5 q"
+    let &t_SI = "\e[5 q"
+else
+    "normal
+    let &t_EI = "\e[1 q"
+    "insert
+    let &t_SI = "\e[5 q"
+endif
