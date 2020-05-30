@@ -6,24 +6,7 @@
 
 config_version: 2
 settings:
-  bindings.commands:
-    global:
-      insert:
-        <Ctrl+w>: tab-close
-      normal:
-        ',U': hint links spawn -d mpv-play {hint-url}
-        ',u': spawn -d mpv-play {url}; close-tab
-        ;U: hint --rapid links spawn -d mpv-play {hint-url}
-        ;u: 'hint --rapid links spawn -d mpv-play {hint-url};; clear-keychain '
-        <Alt+Left>: back
-        <Alt+Right>: forward
-        <Ctrl+Shift+Tab>: tab-prev
-        <Ctrl+Shift+k>: 'set-cmd-text -s :open -t '
-        <Ctrl+Shift+r>: config-source
-        <Ctrl+Tab>: tab-next
-        <Ctrl+k>: 'set-cmd-text -s :open '
-        D: null
-        J: tab-prev
-        K: tab-next
-        d: null
-        x: tab-close
+  colors.webpage.darkmode.enabled:
+    global: true
+  colors.webpage.prefers_color_scheme_dark:
+    global: true
