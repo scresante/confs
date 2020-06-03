@@ -132,6 +132,7 @@ config.bind('<ctrl+shift+tab>', 'tab-prev')
 config.set('tabs.last_close', 'close')
 config.set('session.default_name', 'defaultsession')
 config.set('session.lazy_restore', True)
+config.set('downloads.location.directory', '/tmp')
 
 config.bind('ZQ', 'quit')
 config.bind('ZZ', 'restart')
