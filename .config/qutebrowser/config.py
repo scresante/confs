@@ -126,6 +126,8 @@ config.bind('<Ctrl+shift+k>', 'set-cmd-text -s :open -t ')
 config.bind('<Ctrl+w>', 'tab-close', 'insert')
 config.bind('<space>', 'scroll-page 0 0.9')
 config.bind('<shift+space>', 'scroll-page 0 -0.9')
+config.bind('<ctrl+tab>', 'tab-next')
+config.bind('<ctrl+shift+tab>', 'tab-prev')
 
 config.set('tabs.last_close', 'close')
 config.set('session.default_name', 'defaultsession')
