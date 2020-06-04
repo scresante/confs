@@ -4,7 +4,6 @@
 nnoremap <F8> :set invpaste paste?<CR>
 set pastetoggle=<F8>
 set showmode
-nnoremap <F12> :q<CR>
 
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -15,10 +14,21 @@ nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 noremap <F3> <ESC>:tabp<Cr>
 noremap <F4> <ESC>:tabn<Cr>
 nmap <leader><F6> :set bg=dark<CR>
-nmap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
+"nmap <F6> :hi! Normal ctermbg=NONE guibg=NONE<CR>
 nnoremap <leader><F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
 nnoremap <F7> :call SwitchColor(1)<CR>:echo g:colorscheme<CR>
 
+let t:is_transparent = 0
+function! Toggle_transparent_background()
+  if t:is_transparent == 0
+    hi Normal guibg=#111111 ctermbg=black
+    let t:is_transparent = 1
+  else
+    hi Normal guibg=NONE ctermbg=NONE
+    let t:is_transparent = 0
+  endif
+endfunction
+nnoremap <F6> :call Toggle_transparent_background()<CR>
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 
@@ -65,9 +75,16 @@ nnoremap <leader>[ <ESC>:bp<CR>
 nnoremap <leader>] <ESC>:bn<CR>
 nnoremap <leader>b :bnext<CR>
 nnoremap <leader>B :bprev<CR>
+nnoremap <leader>D :bd<CR>
+
 
 " fix ctrl + arrows
 map [1;5D <C-Left>
 map [1;5C <C-right>
 map [1;5A <C-up>
 map [1;5B <C-down>
+
+
+" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+vnoremap <C-c> "+y
+"map <C-p> "+P

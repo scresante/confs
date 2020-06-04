@@ -134,12 +134,9 @@ let g:lightline = {
     \ }
 set showtabline=1
 
+colorscheme molokai
 set bg=dark
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_italic=0
-let g:gruvbox_italicize_comments=0
-let g:gruvbox_italicize_strings=0
-colorscheme gruvbox
+hi! Normal ctermbg=NONE guibg=NONE
 
 set laststatus=2
 let g:indentLine_concealcursor=''
