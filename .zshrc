@@ -2,8 +2,6 @@
 #set xkbdmap -option:caps:escape
 #[ -z "$SSH_CLIENT" ] && export DISPLAY=:0
 export EDITOR='vim'
-[ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
-[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 source ~/.config/zsh/themes/duellj.zsh-theme
@@ -120,3 +118,10 @@ source $HOME/.config/zsh/.zsh-colors
 
 ##############################      ALIASES      ##############################
 source $HOME/.config/aliases
+
+
+# manually force PATH, for security
+unset PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+[ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
+[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
