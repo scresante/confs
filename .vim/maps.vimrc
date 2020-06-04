@@ -9,6 +9,9 @@ nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
+cnoremap q <Nop>
+cnoremap qa <Nop>
+
 
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
 noremap <F3> <ESC>:tabp<Cr>
@@ -88,3 +91,17 @@ map [1;5B <C-down>
 " Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
 vnoremap <C-c> "+y
 "map <C-p> "+P
+
+function! Searchall()
+    call inputsave()
+    let search = input('search for: ')
+    call inputrestore()
+    redraw
+    echo search
+    "call setqflist([])
+    cex []
+    execute 'bufdo!' 'vimgrepadd!' '/'.expand(search).'/' '%'
+    "cope
+    cw
+endfunction
+map <F9> <ESC>:call Searchall()<CR>

@@ -2,7 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 source $HOME/.vim/mouse_toggle.vimrc
-"source $HOME/.vim/colors.vim
 source $HOME/.vim/vim-plug.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
@@ -147,17 +146,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-function! Searchall()
-    call inputsave()
-    let search = input('search for: ')
-    call inputrestore()
-    redraw
-    echo search
-    "call setqflist([])
-    cex []
-    execute 'bufdo!' 'vimgrepadd!' '/'.expand(search).'/' '%'
-    "cope
-    cw
-endfunction
-map <F9> <ESC>:call Searchall()<CR>
-
+" always be able to run man
+runtime ftplugin/man.vim
+"let g:ft_man_open_mode = 'new'
