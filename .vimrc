@@ -1,8 +1,8 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-source $HOME/.vim/mouse_toggle.vimrc
-source $HOME/.vim/vim-plug.vimrc
+source $HOME/.vim/mouse.vimrc
+source $HOME/.vim/plugs.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
 

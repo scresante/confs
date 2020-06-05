@@ -9,8 +9,6 @@ nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
-cnoremap q <Nop>
-cnoremap qa <Nop>
 
 
 nnoremap <F2> <ESC>:NERDTreeToggle<Cr>
