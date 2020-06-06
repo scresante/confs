@@ -1,2 +1,3 @@
 #!/bin/sh
-xset r 200 50
+xset r rate 200 50
+exec dwm
