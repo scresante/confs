@@ -1,13 +1,11 @@
 ############################    BASIC SETTINGS    ############################
 #set xkbdmap -option:caps:escape
 #[ -z "$SSH_CLIENT" ] && export DISPLAY=:0
-export EDITOR='vim'
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 source ~/.config/zsh/themes/duellj.zsh-theme
 ### SET VIM AS MANPAGER ###
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma nornu nonu' -\""
-export LESS=-RAiMX
 unsetopt auto_cd
 setopt extendedglob
 unsetopt nonomatch
@@ -119,9 +117,4 @@ source $HOME/.config/zsh/.zsh-colors
 ##############################      ALIASES      ##############################
 source $HOME/.config/aliases
 
-
-# manually force PATH, for security
-unset PATH
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-[ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
-[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
+settest=okatest

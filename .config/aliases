@@ -22,7 +22,7 @@ alias yst="yadm status"
 alias yp="yadm pull && yadm push all"
 
 alias lsblk='lsblk -o NAME,MAJ:MIN,RM,TYPE,MOUNTPOINT,SIZE,FSTYPE,LABEL'
-alias fmnt='findmnt -D -t nobpf,nosquashfs,notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse | sort -hk5'
+alias fmnt='findmnt -D -t nobpf,nosquashfs,notracefs,nonsfs,nosysfs,notmpfs,nodevtmpfs,nofuse.gvfsd-fuse,nofuse.portal | sort -hk5'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

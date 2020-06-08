@@ -68,6 +68,7 @@ config.bind('<ctrl+shift+tab>', 'tab-prev')
 config.bind('ZQ', 'quit')
 config.bind('ZZ', 'restart')
 config.bind('h', 'open qute://history')
+config.bind('<ctrl+u>', 'view-source')
 
 config.set('input.insert_mode.auto_load', True)
 config.set('tabs.last_close', 'close')
