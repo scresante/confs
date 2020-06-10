@@ -1,4 +1,5 @@
 config.set('colors.webpage.darkmode.threshold.background', 100)
+config.set('colors.webpage.bg', '#222')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
