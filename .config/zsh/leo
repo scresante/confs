@@ -1,0 +1,8 @@
+unset PROMPT RPROMPT PS2 PS1
+color1=54
+color2=28
+export PROMPT="%F{$color1}┌─%B[%f%F{green}%n%f%b%F{$color2}@%m%B%f%F{$color1}]%f%b - %F{$color1}%B[%b%f%F{white}%~%f%F{$color1}%B]%b%f - %F{$color1}%B[%b%F{yellow}%!%F{$color1}%B]%b%f - [%y]
+%F{$color1}└─%B[%f%F{5}$%F{$color1}]%f%b "
+export RPROMPT='[%*]'
+export PS2=$' %F{blue}%B>%f%b '
+

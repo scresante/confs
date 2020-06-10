@@ -116,7 +116,7 @@ let g:lightline#bufferline#show_number = 1
 "let g:lightline#bufferline#read_only = ' [RO]'
 "let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#shorten_path = 1
 " hide path completely
 "let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline = {

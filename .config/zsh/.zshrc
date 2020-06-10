@@ -116,5 +116,3 @@ source $HOME/.config/zsh/.zsh-colors
 
 ##############################      ALIASES      ##############################
 source $HOME/.config/aliases
-
-settest=okatest
