@@ -1,4 +1,3 @@
-prompt redhat
 unset MANPAGER
 PROMPT='[%F{200}%m%f] %(?.%F{green}√.%F{red}?%?)%f %B%F{40}%~%f%b %# '
 RPROMPT='[%*]'
