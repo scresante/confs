@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+cd ~/.local/src/dwm
+make clean install
+ notify-send -u normal -t 2000 "DWM rebuilt"
+ sleep 2
+ killall -HUP dwm
+echo ran $0 at $(date) >> /tmp/chk
