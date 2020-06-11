@@ -1,4 +1,4 @@
-#!/bin/sh
+# Prints the current volume or 🔇 if muted. Uses PulseAudio by default,
 
 # Prints the current volume or 🔇 if muted. Uses PulseAudio by default,
 # uncomment the ALSA lines if you remove PulseAudio.
@@ -8,7 +8,7 @@ case $BLOCK_BUTTON in
 	# 2) amixer sset Master toggle ;;
 	# 4) amixer sset Master 5%+ >/dev/null 2>/dev/null ;;
 	# 5) amixer sset Master 5%- >/dev/null 2>/dev/null ;;
-	1) setsid -f "$TERMINAL" -e pulsemixer ;;
+	1) setsid -f pavucontrol-qt ;;
 	2) pamixer -t ;;
 	4) pamixer --allow-boost -i 1 ;;
 	5) pamixer --allow-boost -d 1 ;;
