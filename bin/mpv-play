@@ -1,7 +1,8 @@
 #!/bin/sh
 export DISPLAY=:0.0
-notify-send -t 1500 "playing youtube on display $DISPLAY" "$1"
 echo -n "$(date) " >> $HOME/.mpv.log
 echo -n "$1 " >> $HOME/.mpv.log
-curl -so- "$1" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/' >> $HOME/.mpv.log
+title=$(curl -so- "$1" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
+echo $title >> $HOME/.mpv.log
+notify-send -t 1500 "playing youtube on display $DISPLAY" "$title"
 mpv --profile=fastyt "$1"
