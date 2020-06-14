@@ -77,6 +77,7 @@ config.set('session.default_name', 'defaultsession')
 config.set('session.lazy_restore', True)
 config.set('downloads.location.directory', '/tmp')
 config.set('auto_save.session', True)
+config.set('statusbar.position', 'top')
 
 
 # Uncomment this to still load settings configured via autoconfig.yml
@@ -89,3 +90,4 @@ config.bind('<Ctrl+shift+d>',
         )
 config.bind('\\c', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('\\v', 'config-cycle colors.webpage.prefers_color_scheme_dark')
+
