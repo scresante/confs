@@ -1,8 +1,9 @@
 #!/bin/sh
-set -e
+#set -e
 cd ~/.local/src/dwm
-make clean install
- notify-send -u normal -t 2000 "DWM rebuilt"
+make clean install && {
+ notify-send -u normal -t 2000 'DWM rebuilt'
  sleep 2
  killall -HUP dwm
-echo ran $0 at $(date) >> /tmp/chk
+} ||  { notify-send -u critical -t 4000 'dwm-rebuild FAILED ☠☠☠'; }
+#echo ran $0 at $(date) >> /tmp/chk
