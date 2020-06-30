@@ -57,3 +57,4 @@ endfunction
 
 autocmd FileType tex nnoremap <F4> :call Complatex()<CR>
 autocmd FileType tex nnoremap <leader><F4> :call Counttex()<CR>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
