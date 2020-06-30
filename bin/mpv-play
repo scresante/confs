@@ -1,4 +1,5 @@
 #!/bin/sh
+# this plays its first argument
 export DISPLAY=:0.0
 echo -n "$(date) " >> $HOME/.mpv.log
 echo -n "$1 " >> $HOME/.mpv.log

@@ -1,9 +1,10 @@
 #!/bin/sh
+# this program plays whatevers in the clipboard
 export DISPLAY=:0.0
 n="$(xsel -b 2>/dev/null)"
 echo -n "$(date) " >> $HOME/.mpv.log
 echo -n "$n " >> $HOME/.mpv.log
-title=$(curl -so- "$1" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
+title=$(curl -so- "$n" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
 echo $title >> $HOME/.mpv.log
 notify-send -t 1500 "playing youtube on display $DISPLAY" "$title"
 mpv --profile=fastyt "$n"
