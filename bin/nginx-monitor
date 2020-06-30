@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ref() {
+	sudo systemctl reload nginx || sudo systemctl restart nginx
+	sleep 2
+	systemctl status nginx > /dev/null 2>&1 || {
+		echo restarting failed nginx
+		sleep 2
+		sudo systemctl restart nginx
+		systemctl --no-pager show -p Id,ActiveState,MainPID nginx
+	}
+}
+
+
+while true; do
+    inotifywait -e modify,create,delete /etc/nginx/sites-enabled/ && \
+	ref
+done
