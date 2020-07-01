@@ -26,7 +26,6 @@ match ExtraWhitespace /\s\+$/
 set backspace=indent,eol,start
 
 set cul
-set culopt=number
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch
