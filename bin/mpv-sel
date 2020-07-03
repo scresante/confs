@@ -1,10 +1,21 @@
 #!/bin/sh
 # this program plays whatevers in the clipboard
 export DISPLAY=:0.0
-n="$(xsel -b 2>/dev/null)"
-echo -n "$(date) " >> $HOME/.mpv.log
-echo -n "$n " >> $HOME/.mpv.log
-title=$(curl -so- "$n" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
-echo $title >> $HOME/.mpv.log
-notify-send -t 1500 "playing youtube on display $DISPLAY" "$title"
-mpv --profile=fastyt "$n"
+link="$(xsel -b 2>/dev/null)"
+profile=fastyt
+
+if [[ $link =~ ^https:/.*reddit.com ]]; then
+    #reddit
+    profile=reddit
+    html=$(curl -so- "$link")
+    title=$(echo "$html" | get_title.py)
+elif [[ $link =~ ^https://twitch.tv ]]; then
+    title=twitch
+else
+    #youtube
+    title=$(curl -so- "$link" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
+fi
+
+echo "$(date) $link $title" >> $HOME/.mpv.log
+notify-send -t 1500 "playing $title on display $DISPLAY\n profile=$profile" 
+mpv --profile=$profile "$link"

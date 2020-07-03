@@ -1,9 +1,21 @@
 #!/bin/sh
 # this plays its first argument
 export DISPLAY=:0.0
-echo -n "$(date) " >> $HOME/.mpv.log
-echo -n "$1 " >> $HOME/.mpv.log
-title=$(curl -so- "$1" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
-echo $title >> $HOME/.mpv.log
-notify-send -t 1500 "playing youtube on display $DISPLAY" "$title"
-mpv --profile=fastyt "$1"
+link=$1
+profile=fastyt
+
+if [[ $link =~ ^https:/.*reddit.com ]]; then
+    #reddit
+    profile=reddit
+    html=$(curl -so- "$link")
+    title=$(echo "$html" | get_title.py)
+elif [[ $link =~ ^https://twitch.tv ]]; then
+    title=twitch
+else
+    #youtube
+    title=$(curl -so- "$link" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
+fi
+
+echo "$(date) $link $title" >> $HOME/.mpv.log
+notify-send -t 1500 "playing $title on display $DISPLAY\n profile=$profile" 
+mpv --profile=$profile "$link"
