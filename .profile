@@ -1,3 +1,3 @@
 #!/bin/sh
 
-source $HOME/.bashrc
+source $HOME/.config/bash/rc
