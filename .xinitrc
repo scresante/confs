@@ -1,4 +1,8 @@
 #!/bin/sh
+# Fix Gnome Apps Slow  Start due to failing services
+# Add this when you include flatpak in your system
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 xset r rate 200 50 &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 xcompmgr &

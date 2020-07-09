@@ -4,8 +4,6 @@
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 source ~/.config/zsh/themes/duellj.zsh-theme
-### SET VIM AS MANPAGER ###
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma nornu nonu' -\""
 unsetopt auto_cd
 setopt extendedglob
 unsetopt nonomatch
