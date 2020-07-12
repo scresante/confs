@@ -1,5 +1,5 @@
 config.set('colors.webpage.darkmode.threshold.background', 100)
-config.set('colors.webpage.bg', '#222')
+# config.set('colors.webpage.bg', '#222')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
@@ -86,8 +86,10 @@ config.load_autoconfig()
 config.bind('<Ctrl+shift+d>', 
         'config-cycle colors.webpage.darkmode.enabled;;\
         config-cycle colors.webpage.prefers_color_scheme_dark;;\
+        config-cycle colors.webpage.bg white #222;;\
         restart'
         )
 config.bind('\\c', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('\\v', 'config-cycle colors.webpage.prefers_color_scheme_dark')
+config.bind('\\b', 'config-cycle colors.webpage.bg white #222')
 
