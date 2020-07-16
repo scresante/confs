@@ -50,10 +50,6 @@ config.set('content.notifications', False, 'https://www.youtube.com')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('x', 'tab-close')
-config.bind(',u', 'spawn -d mpv-play {url}; close-tab')
-config.bind(',U', 'hint links spawn -d mpv-play {hint-url}')
-config.bind(';U', 'hint --rapid links spawn -d mpv-play {hint-url}')
-config.bind(';u', 'hint --rapid links spawn -d mpv-play {hint-url};; clear-keychain ')
 config.bind('<Alt+left>', 'back')
 config.bind('<Alt+right>', 'forward')
 config.unbind('D')
@@ -79,6 +75,11 @@ config.set('downloads.location.directory', '/tmp')
 config.set('auto_save.session', True)
 config.set('statusbar.position', 'top')
 
+config.set('colors.tabs.odd.bg', 'grey')
+config.set('colors.tabs.odd.fg', 'black')
+
+config.set('colors.tabs.even.bg', 'darkgrey')
+config.set('colors.tabs.even.fg', 'black')
 
 # Uncomment this to still load settings configured via autoconfig.yml
 config.load_autoconfig()
@@ -92,4 +93,11 @@ config.bind('<Ctrl+shift+d>',
 config.bind('\\c', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('\\v', 'config-cycle colors.webpage.prefers_color_scheme_dark')
 config.bind('\\b', 'config-cycle colors.webpage.bg white #222')
-
+config.bind('<F9>', 'enter-mode passthrough', mode='normal')
+config.bind('<F9>', 'enter-mode passthrough', mode='insert')
+config.bind('<F9>', 'enter-mode normal', mode='passthrough')
+#
+config.bind(',u', 'spawn -d mpv-play {url}; close-tab')
+config.bind(',U', 'hint links spawn -d mpv-play {hint-url}')
+config.bind(';U', 'hint links spawn -d mpv --ytdl --ytdl-format=worst {hint-url}')
+config.bind(';u', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
