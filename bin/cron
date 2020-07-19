@@ -1,7 +1,7 @@
 #!/bin/bash
 
 backup_zhist() {
-    backup=zsh_history-$(date +%F_%T)
+    backup=`hostname`_zsh_history-$(date +%F_%T)
     cp ~/.zsh_history ~/.config/zsh/history/$backup
     xz ~/.config/zsh/history/$backup
     rsync -a ~/.config/zsh/history cresante.com:zshbackup
