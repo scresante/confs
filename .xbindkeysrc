@@ -1,5 +1,0 @@
-"xte 'keydown Super_L' 'keydown semicolon' 'keyup semicolon' 'keyup Super_L'"
-  b:10
-  #control+shift + q
-  #c:41 + m:0x4
-  #control + b:2
