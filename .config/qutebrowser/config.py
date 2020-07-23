@@ -1,21 +1,32 @@
+# pylint: disable=C0111
+from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
+from qutebrowser.config.config import ConfigContainer  # noqa: F401
+config = config  # type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103,W0127
+c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103,W0127
+
 config.set('colors.webpage.darkmode.threshold.background', 100)
 # config.set('colors.webpage.bg', '#222')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} \
+        (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} \
+        Safari/{webkit_version}', 'https://web.whatsapp.com/')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 \
+        Firefox/71.0', 'https://accounts.google.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 \
+        (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 \
+        Firefox/71.0', 'https://docs.google.com/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -84,12 +95,12 @@ config.set('colors.tabs.even.fg', 'black')
 # Uncomment this to still load settings configured via autoconfig.yml
 config.load_autoconfig()
 
-config.bind('<Ctrl+shift+d>', 
-        'config-cycle colors.webpage.darkmode.enabled;;\
-        config-cycle colors.webpage.prefers_color_scheme_dark;;\
-        config-cycle colors.webpage.bg white #222;;\
-        restart'
-        )
+config.bind('<Ctrl+shift+d>',
+            'config-cycle colors.webpage.darkmode.enabled;;\
+            config-cycle colors.webpage.prefers_color_scheme_dark;;\
+            config-cycle colors.webpage.bg white #222;;\
+            restart'
+            )
 config.bind('\\c', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('\\v', 'config-cycle colors.webpage.prefers_color_scheme_dark')
 config.bind('\\b', 'config-cycle colors.webpage.bg white #222')
@@ -101,4 +112,6 @@ config.bind(',u', 'spawn -d mpv-play {url}; close-tab')
 config.bind(',U', 'hint links spawn -d mpv-play {hint-url}')
 config.bind(';U', 'hint links spawn -d mpv --ytdl --ytdl-format=worst {hint-url}')
 config.bind(';u', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
+config.bind('zv', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
 config.bind('sb', 'open qute://bookmarks#bookmarks')
+config.set('hints.chars', 'qwertasdfgzxcvb')

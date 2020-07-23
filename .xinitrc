@@ -9,5 +9,4 @@ xcompmgr &
 unclutter &
 dunst &
 nitrogen --restore &
-xbindkeys
 exec dwm

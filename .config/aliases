@@ -60,8 +60,8 @@ alias pkglast='rpm -qa --last | tail -n30'
 }
 
 alias svi='sudo -E vim'
-alias updb='updatedb -U $HOME -l 0 -o $HOME/.locate.db'
-alias loc='locate -d $HOME/.locate.db'
+alias updb='updatedb-all'
+alias loc='locate -d /opt/locate-all.db'
 
 ############ ZSH specific aliases #################
 if [[ ${SHELL##*/} = 'zsh' ]]; then
