@@ -79,3 +79,5 @@ fi
 alias dh='dirs -v'
 alias h='fc -ln'
 
+alias viconf='vim ~/.vimrc ~/.vim/*.vimrc'
+alias vimconf=viconf
