@@ -115,3 +115,8 @@ config.bind(';u', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
 config.bind('zv', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
 config.bind('sb', 'open qute://bookmarks#bookmarks')
 config.set('hints.chars', 'qwertasdfgzxcvb')
+config.bind('CC', \
+        'print -f /tmp/qutecap.pdf;;\
+        spawn -v -m /home/shawn/bin/qutecap {url:pretty}')
+config.bind('tg', 'set-cmd-text -s :tab-give')
+config.bind('cr', 'repeat-command')
