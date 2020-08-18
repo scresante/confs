@@ -1,0 +1,10 @@
+#!/bin/bash
+# a helper to rename a capture from qutebrowser
+
+safe=$(echo "$*" | sed -e 's/\//\\/g' | cut -c 1-200)
+sleep 2
+mv -v /tmp/qutecap.pdf "$HOME/Photos/webcaptures/$(date +%F_%T)-$safe.pdf"
+#convert /tmp/qutecapture.pdf -density 300 /tmp/qutecapture.png
+#convert -append /tmp/qutecapture-*.png "/tmp/qute_capture_$safe.png"
+#rm -vf /tmp/qutecapture*
+#echo wrote "/tmp/qute_capture_$safe.png"
