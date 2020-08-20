@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo "note: if you see a bridge mac without a corresponding IP on the next line,"
+echo "run: fping -c1 -q -s -g 192.168.52.0/24"
+echo ""
+
 for x in $(sudo virsh list --name | xargs); do
     echo -n "ip of $x: "
     ip=$(sudo virsh domifaddr "$x" | tr -s ' ' | grep ipv4 | cut -f5 -d' ' | cut -f1 -d'/')
