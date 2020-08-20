@@ -1,0 +1,13 @@
+#!/bin/sh
+
+for x in $(sudo virsh list --name | xargs); do
+    echo -n "ip of $x: "
+    ip=$(sudo virsh domifaddr "$x" | tr -s ' ' | grep ipv4 | cut -f5 -d' ' | cut -f1 -d'/')
+    [ -z $ip ] && echo '[none detected]' || echo $ip
+    if [ ! -z "$(sudo virsh domiflist $x | sed -n '/bridge/p')" ]; then
+        brmac=$(sudo virsh domiflist $x | awk '/bridge/  { print $5 }')
+        # interface is a bridge, find the client ip
+        echo -e "\tbridge mac: $brmac"
+        arp -n | grep $brmac | sed "s/^/\t/g"
+    fi
+done

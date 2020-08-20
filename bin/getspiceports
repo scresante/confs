@@ -1,0 +1,91 @@
+#!/bin/bash
+
+BIND=localhost
+HOST=home.cresante.com
+HOSTPORT=1426
+KEY=$HOME/.ssh/jump
+
+activedomains=$(sudo virsh list --name | xargs)
+
+parse_ports () {
+   #echo got args: "$*"
+   #ports=$(echo $* | tr ' ' '\n' | sed -n -e '/port=/p' |sed -e 's/.*port=//g')
+   #ports=$(echo "$*" | awk '{print $3}')
+   ports=$(echo "$displays" |  awk '{print $3}')
+   echo "$ports"
+}
+
+select_from () {
+    newguest=$(echo "$displays" | sed -n "${1}p"| awk '{print $3}')
+    #echo newguest: "$newguest"
+    #parse_ports $newguest
+    #echo selected: "$newguest"
+    echo $newguest
+}
+
+get_displays () {
+    for dom in $activedomains; do
+        echo -n "$dom "
+        rawnum=$(sudo virsh domdisplay $dom | cut -d':' -f3)
+        realport=$(printf "%02d" "$rawnum")
+        echo 59${realport}
+    done | nl
+}
+
+detect_actives() {
+    actives=$(pgrep -U `id -u` -a -f "ssh -p 1426")
+    if [ ! -z "$actives" ]; then
+        echo "Active Port Forwards (for this user): "
+        echo "$actives"
+        echo -ne "Do you want to kill them all? [y/n]: "; read CLEAR
+
+        if [[ $CLEAR == "y" ]]; then
+            echo 'killing..'
+            pgrep -U `id -u` -f 'ssh -p 1426' | tee >(xargs kill)
+        fi
+    fi
+}
+
+show_notice() {
+    if [ -z $SSH_AGENT_PID ]; then
+        echo "Note: to avoid entering a passphrase for every connection, run:"
+        echo "'[ -z \"\$SSH_AGENT_PID\" ] && eval \`ssh-agent\` && ssh-add $KEY'"
+    fi
+}
+#guests=$(pgrep -af qemu | sed \
+    #-e 's/.*\( -name guest=.*\),debug-th.*\( -spice.*\),x509-dir.*/\1 \2/g' \
+    #-e 's/,/ /g;s/  */ /g')
+
+#guests=$(pgrep -af qemu | sed -re 's/.*(guest=.*),debug-th.* -spice(.*),x509-dir.*/\1 \2/g;s/,/ /g' | nl)
+#get_displays
+
+main() {
+    echo "$displays"
+    echo -ne "forward all ports to from $BIND to $HOST? [q]uit [a]ll [s]elect [c]ustom: "; read SELECT
+    case $SELECT in
+        q)
+            exit;;
+        a)
+            ports=$(parse_ports $guests)
+            ;;
+        s)
+            echo -ne "enter number: "; read NUM
+            ports=$(select_from $NUM)
+            ;;
+        c)
+            echo -ne "enter ports: "; read ports
+            ;;
+        *)
+            echo invalid; exit 1;;
+    esac
+
+    for port in $ports; do
+        ssh -p $HOSTPORT -i $KEY -fN -R $port:$BIND:$port $HOST
+    done
+    echo forwarded $ports
+}
+
+show_notice
+displays=$(get_displays)
+detect_actives
+main
