@@ -50,6 +50,7 @@ show_notice() {
     if [ -z $SSH_AGENT_PID ]; then
         echo "Note: to avoid entering a passphrase for every connection, run:"
         echo "'[ -z \"\$SSH_AGENT_PID\" ] && eval \`ssh-agent\` && ssh-add $KEY'"
+        echo
     fi
 }
 #guests=$(pgrep -af qemu | sed \
