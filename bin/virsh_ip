@@ -1,17 +1,30 @@
 #!/bin/sh
 
-echo "note: if you see a bridge mac without a corresponding IP on the next line,"
-echo "run: fping -c1 -q -s -g 192.168.52.0/24"
-echo ""
+if [[ "$1" == "-s" ]]; then
+    ( command -v ffping > /dev/null 2>&1 ) || { echo >&2 "Scan mode requires ffping. Aborting."; exit 1; }
+    echo -n 'scanning subnet ... '
+    fping -c1 -g 192.168.52.0/24 >/dev/null 2>&1
+    echo "subnet scan complete"
+else
+    echo "note: "
+    echo "if you see \"ip not found\","
+    echo "rerun this script with the -s argument"
+    echo ""
+fi
 
 for x in $(sudo virsh list --name | xargs); do
     echo -n "ip of $x: "
     ip=$(sudo virsh domifaddr "$x" | tr -s ' ' | grep ipv4 | cut -f5 -d' ' | cut -f1 -d'/')
     [ -z $ip ] && echo '[none detected]' || echo $ip
     if [ ! -z "$(sudo virsh domiflist $x | sed -n '/bridge/p')" ]; then
+        # interface is a bridge, do this stuff
         brmac=$(sudo virsh domiflist $x | awk '/bridge/  { print $5 }')
-        # interface is a bridge, find the client ip
         echo -e "\tbridge mac: $brmac"
-        arp -n | grep $brmac | sed "s/^/\t/g"
+        found_ip=$(arp -n | grep $brmac | awk '{print $1}')
+        if [ -z "$found_ip" ] ; then
+            echo -e "\tip not found"
+        else
+            echo -e "\tbridge ip: $found_ip"
+        fi
     fi
 done
