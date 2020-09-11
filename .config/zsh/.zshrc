@@ -107,7 +107,7 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-source $HOME/.config/zsh/.zsh-colors
+source $HOME/.config/zsh/zsh-colors
 
 # load per-host zsh customizations
 [ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
