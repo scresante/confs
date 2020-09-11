@@ -62,6 +62,8 @@ export SAVEHIST=30000
 export HIST_STAMPS="%d/%m/%y %T"
 export HISTFILE=~/.zsh_history
 
+source $HOME/.config/zsh/zsh-colors
+
 ##############################    COMPLETION    ##############################
 autoload -U compinit && compinit
 zmodload -i zsh/complist
@@ -107,7 +109,6 @@ bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
 
-source $HOME/.config/zsh/zsh-colors
 
 # load per-host zsh customizations
 [ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
