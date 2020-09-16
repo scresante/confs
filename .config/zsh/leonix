@@ -1,0 +1,34 @@
+unset PROMPT RPROMPT PS2 PS1
+
+color1=54
+color2=28
+
+base_prompt_width=44
+path_width=`pwd | wc -c`
+term_width=`tput cols`
+if (( ($base_prompt_width + $path_width) > $term_width )); then
+    #echo 'length exceeded'
+    width_limit=$(( $term_width - $base_prompt_width ))
+    #echo $width_limit
+    export PROMPT="%F{$color1}┌─%B[%f%F{green}%n%f%b%F{$color2}@%m%B%f%F{$color1}]%f%b - %F{$color1}%B[%b%f%F{white}%${width_limit}<…<%~%<<%f%F{$color1}%B]%b%f - %F{$color1}%B[%b%F{yellow}%!%F{$color1}%B]%b%f - [%y]
+%F{$color1}└─%B[%f%F{5}$%F{$color1}]%f%b "
+    if (( $width_limit < 10 )); then
+        #remove extra shit
+        echo we r fuckin smol
+        width_limit=$(( $width_limit + 21))
+        export PROMPT="%F{$color1}┌─%B[%f%F{green}%n%f%b%F{$color2}@%m%B%f%F{$color1}]%f%b - %F{$color1}%B[%b%f%F{white}%${width_limit}<…<%~%<<%f%F{$color1}%B]%b%f
+%F{$color1}└─%B[%f%F{5}$%F{$color1}]%f%b "
+    fi
+else
+    export PROMPT="%F{$color1}┌─%B[%f%F{green}%n%f%b%F{$color2}@%m%B%f%F{$color1}]%f%b - %F{$color1}%B[%b%f%F{white}%${width_limit}<…<%~%<<%f%F{$color1}%B]%b%f - %F{$color1}%B[%b%F{yellow}%!%F{$color1}%B]%b%f - [%y]
+%F{$color1}└─%B[%f%F{5}$%F{$color1}]%f%b "
+    #echo 'length ok'
+fi
+
+#export PROMPT="%F{$color1}┌─%B[%f%F{green}%n%f%b%F{$color2}@%m%B%f%F{$color1}]%f%b - %F{$color1}%B[%b%f%F{white}%(4~|…/%3~|%~)%f%F{$color1}%B]%b%f - %F{$color1}%B[%b%F{yellow}%!%F{$color1}%B]%b%f - [%y]
+export RPROMPT='[%*]'
+export PS2=$' %F{blue}%B>%f%b '
+#unset base_prompt_width term_width path_width width_limit
+#
+trap "source $0" SIGWINCH
+# vim: syn=zsh filetype=zsh
