@@ -4,10 +4,10 @@
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 xset r rate 200 50 &
-#[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
-#xcompmgr &
-#unclutter &
-#dunst &
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
+xcompmgr &
+unclutter &
+dunst &
 #nitrogen --restore &
 alacritty &
-exec twm
+exec qtile

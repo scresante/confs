@@ -118,3 +118,5 @@ source $HOME/.config/aliases
 
 autoload -U select-word-style
 select-word-style bash
+
+source $HOME/.config/zsh/zsh-colors
