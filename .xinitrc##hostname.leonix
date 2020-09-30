@@ -9,5 +9,5 @@ xcompmgr &
 unclutter &
 dunst &
 #nitrogen --restore &
-alacritty &
+#alacritty &
 exec qtile

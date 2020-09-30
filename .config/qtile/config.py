@@ -26,7 +26,7 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.lazy import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, hook
 
 from typing import List  # noqa: F401
 
@@ -55,7 +55,7 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod, "shift"], "q", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
@@ -63,10 +63,17 @@ keys = [
     
     # programs
     Key([mod], "Return", lazy.spawn("alacritty")),
+    Key([mod], "w", lazy.spawn("firefox")),
+    Key([mod], "q", lazy.spawn("qutebrowser")),
+    Key([mod], "c", lazy.spawn("gnome-calculator")),
+    Key([mod], "m", lazy.spawn("thunderbird")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute"))
 
 ]
 
-groups = [Group(i) for i in "asdfuiop"]
+groups = [Group(i) for i in "12345678"]
 
 for i in groups:
     keys.extend([
@@ -90,7 +97,7 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    # layout.Tile(),
+    layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
@@ -111,9 +118,20 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.TextBox("default config", name="default"),
+            ],
+            24,
+        ),
+    ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.PulseVolume(),
                 widget.QuickExit(),
             ],
             24,
@@ -165,3 +183,16 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.client_new
+def floating_clients(window):
+    floating_windows = ['mpv', 'gnome-calculator'] 
+    if window.name.lower() == 'mpv':
+        window.togroup("6", switch_group = True)
+    if window.name.lower() == 'thunderbird':
+        window.togroup("4", switch_group = True)
+    # elif window.name == "gnome-calculator":
+        # window.togroup("u")
+    for win in floating_windows:
+        if win in window.name:
+            window.floating = True
