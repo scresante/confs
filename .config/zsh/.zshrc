@@ -62,8 +62,6 @@ export SAVEHIST=30000
 export HIST_STAMPS="%d/%m/%y %T"
 export HISTFILE=~/.zsh_history
 
-source $HOME/.config/zsh/zsh-colors
-
 ##############################    COMPLETION    ##############################
 autoload -U compinit && compinit
 zmodload -i zsh/complist
