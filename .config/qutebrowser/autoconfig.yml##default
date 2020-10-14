@@ -21,9 +21,12 @@ settings:
   content.notifications:
     https://1337x.to: false
     https://app.slack.com: true
+    https://chatsupport.apple.com: true
     https://gab.com: true
     https://mail.google.com: true
     https://mattermost.tutti.ml: true
     https://messages.google.com: true
+    https://tmynn.ekamarkable.club: false
+    https://www.1337x.to: false
     https://www.facebook.com: true
     https://x1337x.ws: false
