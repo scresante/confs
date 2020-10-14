@@ -14,10 +14,13 @@ settings:
     global: true
   content.media.audio_capture:
     https://meet.google.com: true
+    https://meet.jit.si: true
   content.media.audio_video_capture:
     https://meet.google.com: true
+    https://meet.jit.si: true
   content.media.video_capture:
     https://meet.google.com: true
+    https://meet.jit.si: true
   content.notifications:
     https://1337x.to: false
     https://app.slack.com: true
@@ -30,3 +33,5 @@ settings:
     https://www.1337x.to: false
     https://www.facebook.com: true
     https://x1337x.ws: false
+  content.register_protocol_handler:
+    https://calendar.google.com?cid=%25s: true
