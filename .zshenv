@@ -25,4 +25,5 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export LPASS_AGENT_TIMEOUT=600000
+export LPASS_ASKPASS=/home/shawn/.lastpass/fakepass
 export LIBVIRT_DEFAULT_URI=qemu:///system
