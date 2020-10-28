@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [[ "$1" == "-s" ]]; then
-    ( command -v ffping > /dev/null 2>&1 ) || { echo >&2 "Scan mode requires ffping. Aborting."; exit 1; }
+    ( command -v fping > /dev/null 2>&1 ) || { echo >&2 "Scan mode requires ffping. Aborting."; exit 1; }
     echo -n 'scanning subnet ... '
     fping -c1 -g 192.168.52.0/24 >/dev/null 2>&1
     echo "subnet scan complete"
