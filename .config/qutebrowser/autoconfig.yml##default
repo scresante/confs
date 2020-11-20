@@ -15,12 +15,16 @@ settings:
   content.media.audio_capture:
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://www.facebook.com: true
+    https://www.messenger.com: true
   content.media.audio_video_capture:
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://www.facebook.com: true
   content.media.video_capture:
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://www.facebook.com: true
   content.notifications:
     https://1337x.to: false
     https://app.slack.com: true
@@ -29,6 +33,7 @@ settings:
     https://mail.google.com: true
     https://mattermost.tutti.ml: true
     https://messages.google.com: true
+    https://realsport101.com: false
     https://tmynn.ekamarkable.club: false
     https://www.1337x.to: false
     https://www.facebook.com: true

@@ -6,9 +6,9 @@ if [[ "$1" == "-s" ]]; then
     fping -c1 -g 192.168.52.0/24 >/dev/null 2>&1
     echo "subnet scan complete"
 else
-    echo "note: "
-    echo "if you see \"ip not found\","
-    echo "rerun this script with the -s argument"
+    echo -n "note: "
+    echo -n "if you see \"ip not found\","
+    echo -n "rerun this script with the -s argument"
     echo ""
 fi
 
