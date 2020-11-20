@@ -28,6 +28,7 @@ settings:
   content.notifications:
     https://1337x.to: false
     https://app.slack.com: true
+    https://calendar.google.com: true
     https://chatsupport.apple.com: true
     https://gab.com: true
     https://mail.google.com: true
