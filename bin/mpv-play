@@ -16,6 +16,8 @@ else
     title=$(curl -so- "$link" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
 fi
 
+# trim title to 300 chars
+title=${title:0:300}
 echo "$(date) $link $title" >> $HOME/.mpv.log
 notify-send -t 1500 "playing $title on display $DISPLAY\n profile=$profile" 
 mpv --profile=$profile "$link"
