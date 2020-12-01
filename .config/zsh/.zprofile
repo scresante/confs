@@ -15,7 +15,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 #export DICS="/usr/share/stardict/dic/"
 #export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export LESS=-RAiMX
+export LESS=-RAiM
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
 export LESS_TERMCAP_me="$(printf '%b' '[0m')"
