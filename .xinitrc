@@ -1,1 +1,1 @@
-.xinitrc##hostname.leonix
+.xinitrc##hostname.420
