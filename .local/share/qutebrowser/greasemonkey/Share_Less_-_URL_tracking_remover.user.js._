@@ -1,0 +1,228 @@
+// ==UserScript==
+// @name            Share Less - URL tracking remover
+// @description     Remove tracking from URLs like Urchin Tracking Module (UTM) parameters, Google click identifiers (GCLID), Facebook click identifiers (FBCLID), Amazon share ID trakers
+// @author          navchandar
+// @version         1.3
+// @run-at          document-end
+// @grant           none
+// @homepage        https://navchandar.github.io/
+// @homepageURL     https://navchandar.github.io/
+// @homepage        https://github.com/navchandar
+// @copyright       2019, navchandar (https://openuserjs.org/users/navchandar)
+// @supportURL      https://openuserjs.org/scripts/navchandar/Share_Less_-_URL_tracking_remover/issues
+// @downloadURL     https://openuserjs.org/install/navchandar/Share_Less_-_URL_tracking_remover.user.js
+// @updateURL       https://openuserjs.org/meta/navchandar/Share_Less_-_URL_tracking_remover.meta.js
+// @setupURL        https://openuserjs.org/install/navchandar/Share_Less_-_URL_tracking_remover.user.js
+// @license         MPL-2.0
+// @match           https://google.co*
+// @match           http://google.co*
+// @include         https://www.google.co*
+// @include         http://www.google.co*
+// @include         https://www.instagram.co*
+// @include         http://www.instagram.co*
+// @include         https://www.facebook.co*
+// @include         http://www.facebook.co*
+// @include         https://m.facebook.co*
+// @include         http://m.facebook.co*
+// @include         http://www.amazon.com
+// @include         https://www.amazon.com
+// @include         http://www.amazon.co*
+// @include         https://www.amazon.*
+// @include         http://www.amazon.in
+// @match           https://www.amazon.in/*
+// @include         https://www.flipkart.com*
+// @include         http://www.flipkart.com*
+// @include         https://paytm.com*
+// @include         http://paytm.com*
+// @include         https://paytmmall.com*
+// @include         http://paytmmall.com*
+// ==/UserScript==
+
+function has(String, search) {
+  try {
+    if (String.indexOf(search) > -1) {
+      return true;
+    }
+  }
+  catch (err) {}
+  return false;
+}
+
+function isEncoded(str) {
+  return typeof str == "string" && decodeURIComponent(str) !== str;
+}
+
+function removeEndChar(str, end) {
+  if (str.endsWith(end)) {
+    str = str.substring(0, str.indexOf(end));
+  }
+  return str;
+}
+
+function removeUTMparam(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, '?utm_') || has(updatedurl, '&utm_')) {
+    if (has(updatedurl, 'utm_source=')) {
+      updatedurl = updatedurl.replace(/utm\_source\=.*\&/, '');
+    }
+    if (has(updatedurl, 'utm_source=')) {
+      updatedurl = updatedurl.replace(/utm\_source\=.*/, '');
+    }
+    if (has(updatedurl, 'utm_medium=')) {
+      updatedurl = updatedurl.replace(/utm\_medium\=.*\&/, '');
+    }
+    if (has(updatedurl, 'utm_medium=')) {
+      updatedurl = updatedurl.replace(/utm\_medium\=.*/, '');
+    }
+    if (has(updatedurl, 'utm_campaign=')) {
+      updatedurl = updatedurl.replace(/utm\_campaign\=.*\&/, '');
+    }
+    if (has(updatedurl, 'utm_campaign=')) {
+      updatedurl = updatedurl.replace(/utm\_campaign\=.*/, '');
+    }
+    if (has(updatedurl, 'utm_term=')) {
+      updatedurl = updatedurl.replace(/utm\_term\=.*\&/, '');
+    }
+    if (has(updatedurl, 'utm_term=')) {
+      updatedurl = updatedurl.replace(/utm\_term\=.*/, '');
+    }
+    if (has(updatedurl, 'utm_content=')) {
+      updatedurl = updatedurl.replace(/utm\_content\=.*\&/, '');
+    }
+    if (has(updatedurl, 'utm_content=')) {
+      updatedurl = updatedurl.replace(/utm\_content\=.*/, '');
+    }
+    updatedurl = removeEndChar(updatedurl, '?');
+    updatedurl = removeEndChar(updatedurl, '&');
+  }
+  if (URL == updatedurl) {
+    console.log('Unable to remove UTM params from ' + URL);
+  }
+  return updatedurl;
+}
+
+function removeFBCLID(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, 'fbclid')) {
+    if (has(updatedurl, '?fbclid')) {
+      updatedurl = updatedurl.replace(/\?fbclid=[^&]*&/, '?');
+    }
+    if (has(updatedurl, '&fbclid')) {
+      updatedurl = updatedurl.replace(/&fbclid=[^&]*&/, '&');
+    }
+    if (has(updatedurl, 'fbclid=')) {
+      updatedurl = updatedurl.replace(/(\?|&)fbclid=[^&]*$/, '');
+    }
+    updatedurl = removeEndChar(updatedurl, '&');
+    updatedurl = removeEndChar(updatedurl, '?');
+  }
+  if (URL == updatedurl) {
+    console.log('Unable to remove FBCLID from ' + URL);
+  }
+  return updatedurl;
+}
+
+function removeGCLID(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, 'gclid')) {
+    if (has(updatedurl, '?gclid')) {
+      updatedurl = updatedurl.replace(/\?gclid=[^&]*&/, '?');
+    }
+    if (has(updatedurl, '&gclid=')) {
+      updatedurl = updatedurl.replace(/&gclid=[^&]*&/, '&');
+    }
+    if (has(updatedurl, 'gclid=')) {
+      updatedurl = updatedurl.replace(/(\?|&)gclid=[^&]*$/, '');
+    }
+    updatedurl = removeEndChar(updatedurl, '&');
+    updatedurl = removeEndChar(updatedurl, '?');
+  }
+  if (URL == updatedurl) {
+    console.log('Unable to remove GCLID from ' + URL);
+  }
+  return updatedurl;
+}
+
+function removeAZparam(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, '/dp/') && has(updatedurl, 'amazon')) {
+    updatedurl = updatedurl.replace(/(?<=\/dp\/\w+(\?|&|\/)).*/, '');
+    updatedurl = removeEndChar(updatedurl, '&');
+    updatedurl = removeEndChar(updatedurl, '?');
+  }
+  return updatedurl;
+}
+
+function removePTparam(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, 'pdp') && has(updatedurl, 'track')) {
+    updatedurl = updatedurl.replace(/(?<=\-pdp(\?|&|\/)).*/, '');
+    updatedurl = removeEndChar(updatedurl, '&');
+    updatedurl = removeEndChar(updatedurl, '?');
+  }
+  return updatedurl;
+}
+
+function removeFKparam(URL) {
+  var updatedurl = URL;
+  if (has(updatedurl, 'pid') && has(updatedurl, 'itm') && has(updatedurl, 'track')) {
+    updatedurl = updatedurl.replace(/(?<=pid\=\w+(\?|&|\/)).*/, '');
+    updatedurl = removeEndChar(updatedurl, '&');
+    updatedurl = removeEndChar(updatedurl, '?');
+  }
+  return updatedurl;
+}
+
+function updateURLs() {
+  var arr = [],
+    l = document.links;
+  for (var i = 0; i < l.length; i++) {
+    var URL = l[i].href;
+    if (URL) {
+      var urlEncoded = isEncoded(URL);
+      if (urlEncoded) {
+        URL = decodeURIComponent(URL);
+      }
+      var newURL = URL;
+
+      if (has(newURL, 'utm_')) {
+        newURL = removeUTMparam(newURL);
+      }
+
+      if (has(newURL, 'fbclid')) {
+        newURL = removeFBCLID(newURL);
+      }
+
+      if (has(newURL, 'gclid')) {
+        newURL = removeGCLID(newURL);
+      }
+
+      if (has(newURL, '/dp/')) {
+        newURL = removeAZparam(newURL);
+      }
+
+      if (has(newURL, 'pid=')) {
+        newURL = removeFKparam(newURL);
+      }
+
+      if (has(newURL, '-pdp')) {
+        newURL = removePTparam(newURL);
+      }
+
+      if (newURL != URL) {
+        l[i].href = newURL;
+        console.log('Changed ' + URL + ' to ' + newURL);
+      }
+    }
+  }
+}
+
+(function () {
+  'use strict';
+
+  // call this every 5 seconds to update as & when pages load
+  setInterval(function () {
+    updateURLs();
+  }, 5000);
+
+})();

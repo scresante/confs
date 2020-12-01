@@ -1,0 +1,49 @@
+// ==UserScript==
+// @name         facebook fbclid remove
+// @namespace    facebook_fbclid_remove
+// @version      0.4
+// @description  remove facebook fbclid!
+// @author       Mesak
+// @include      http://*/*
+// @include      https://*/*
+// @exclude      facebook.com
+// @run-at       document-start
+// @grant        none
+// @copyright 2018, mesak (https://openuserjs.org/users/mesak)
+// @license GPL-3.0-or-later
+// ==/UserScript==
+(function () {
+  let url = window.location.href;
+  let q = url.match(/fbclid=(\S{61})/)
+  if (q) {
+    url = url.replace(q[0], '');
+    if ('&' == url.substr(url.length - 1, 1)) {
+      url = url.substr(0, url.length - 1);
+    }
+    if ('?' == url.substr(url.length - 1, 1)) {
+      url = url.substr(0, url.length - 1);
+    }
+    history.replaceState(null, null, url);
+  }
+
+  function return_page(num) {
+    if (num < 10) {
+
+      if (document.querySelector('#globalContainer .selected')) {
+
+        let new_url = document.querySelector('#globalContainer .selected').getAttribute('href');
+        window.location.href = new_url;
+      }
+      else {
+        setTimeout(function () {
+          return_page(++num)
+        }, 500);
+      }
+    }
+  }
+  if (url.indexOf('www.facebook.com/flx/warn') != -1) {
+    setTimeout(function () {
+      return_page(1)
+    })
+  }
+})();

@@ -36,7 +36,7 @@ augroup python
     autocmd FileType python map <F5> <ESC>:w<CR>:below term ++close ++rows=14 ipython -i "%"<CR>
     autocmd FileType python set tabstop=4 expandtab shiftwidth=4 softtabstop=4
     autocmd FileType python match ExtraWhiteSpace /^\t\+/
-    let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing-docstring'] }
+    let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing.*docstring', 'unused-variable'] }
 augroup END
 
 "autocmd FileType python set foldmethod=manual
