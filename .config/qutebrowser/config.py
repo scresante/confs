@@ -111,7 +111,7 @@ config.bind('<F1>', 'enter-mode passthrough', mode='normal')
 config.bind('<F1>', 'enter-mode passthrough', mode='insert')
 config.bind('<F1>', 'enter-mode normal', mode='passthrough')
 
-config.bind(',u', 'spawn -d mpv-play {url}; close-tab')
+config.bind(',u', 'spawn -d mpv-play {url}')
 config.bind(',U', 'hint links spawn -d mpv-play {hint-url}')
 config.bind(';U', 'hint links spawn -d mpv --ytdl --ytdl-format=worst {hint-url}')
 config.bind(';u', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
