@@ -124,9 +124,12 @@ let g:lightline = {
     \ }
 set showtabline=1
 
-colorscheme molokai
-set bg=dark
-hi! Normal ctermbg=NONE guibg=NONE
+"Only use this theme in X
+if has_key(environ(), 'DISPLAY')
+    colorscheme molokai
+    set bg=dark
+    hi! Normal ctermbg=NONE guibg=NONE
+endif
 
 set laststatus=2
 let g:indentLine_concealcursor=''

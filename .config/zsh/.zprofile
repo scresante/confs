@@ -12,8 +12,6 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 [ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
 
 # Other program settings:
-#export DICS="/usr/share/stardict/dic/"
-#export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS=-RAiM
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
@@ -27,5 +25,3 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
-
-#[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
