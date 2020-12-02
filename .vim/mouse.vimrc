@@ -3,6 +3,14 @@
 "	<leader>m		-> <plug>mouse_toggle
 "	Written by Kobus Retief
 
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+  if &term =~ '^screen'
+    set ttymouse=xterm2
+  endif
+endif
+
 if !has("mouse")
 	finish
 endif

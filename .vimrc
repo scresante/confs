@@ -31,14 +31,6 @@ set showcmd		" display incomplete commands
 set incsearch
 set scrolloff=4
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-  if &term =~ '^screen'
-    set ttymouse=xterm2
-  endif
-endif
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
