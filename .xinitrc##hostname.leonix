@@ -7,8 +7,8 @@
 xset r rate 200 50 &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 #xcompmgr &
-#unclutter &
-#dunst &
-#nitrogen --restore &
+unclutter &
+dunst &
+nitrogen --restore &
 #alacritty &
-exec awesome
+exec xmonad
