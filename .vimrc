@@ -9,7 +9,7 @@ set autoindent smartindent
 set splitright splitbelow
 set ignorecase smartcase
 
-set showmatch
+set noshowmatch
 set guifont=Monospace\ 8
 set number relativenumber
 set hidden " allow switching buffers without writing
@@ -88,7 +88,7 @@ source $HOME/.vim/files.vimrc
 
 "Only use this theme in X
 if has_key(environ(), 'DISPLAY')
-    colorscheme molokai
+    colorscheme monokai
     set bg=dark
     hi! Normal ctermbg=NONE guibg=NONE
 endif

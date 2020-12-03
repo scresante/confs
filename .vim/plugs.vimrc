@@ -3,6 +3,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 "Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'prabirshrestha/vim-lsp'
 Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-surround'
@@ -11,7 +12,7 @@ Plug 'tpope/vim-unimpaired'
 " multilanguage syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'junegunn/fzf'
 
 "Plug 'pangloss/vim-javascript', { 'for': ['jsx','js','javascript'] }
 "Plug 'mxw/vim-jsx', { 'for': ['jsx','js','javascript'] }
@@ -34,15 +35,12 @@ Plug 'mengelbrecht/lightline-bufferline'
 call plug#end() " More information: https://github.com/junegunn/vim-plug
 
 """""""""""""""""" PLUGIN SPECIFIC SETTINGS """"""""""""""""""
+
 " lightline, fonts, and colors
 "set noshowmode
 let g:lightline#bufferline#show_number = 1
-"let g:lightline#bufferline#read_only = ' [RO]'
-"let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#shorten_path = 1
-" hide path completely
-"let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline = {
     \ 'colorscheme': 'one',
     \ 'active': {
@@ -58,15 +56,52 @@ let g:lightline = {
 set showtabline=1
 set laststatus=2
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_loc_list_height = 6
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing.*docstring', 'unused-variable'] }
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_loc_list_height = 6
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing.*docstring', 'unused-variable'] }
 
-let g:jedi#popup_on_dot = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
-let g:jedi#rename_command = '<leader>R'
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#smart_auto_mappings = 0
+"let g:jedi#show_call_signatures = 0
+"let g:jedi#rename_command = '<leader>R'
 
+let g:ale_linters = {
+            \ 'python': ['flake8', 'pylint'],
+            \ 'haskell': ['cabal_ghc', 'ghc'],
+            \ 'javascript': ['eslint'],
+            \}
+let g:ale_fixers = {
+            \ 'python': ['yapf'],
+            \}
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    " refer to doc to add more commands
+endfunction
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
