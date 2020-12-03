@@ -13,6 +13,12 @@ setopt interactivecomments
 DIRSTACKSIZE=20
 setopt autopushd pushdminus pushdtohome
 
+######### COLORS #########
+## I think this needs to be up here
+## because its used for completion below
+#source $HOME/.config/zsh/zsh-colors
+eval "$(dircolors $HOME/.config/zsh/dircolors)"
+
 ##############################      VI MODE      ##############################
 ZSHVER=$(zsh --version | cut -f2 -d' ' | cut -f-2 -d'.')
 if [[ "$ZSHVER" -lt "5.3" ]]; then
@@ -117,5 +123,3 @@ source $HOME/.config/aliases
 autoload -U select-word-style
 select-word-style bash
 
-#source $HOME/.config/zsh/zsh-colors
-eval "$(dircolors $HOME/.config/zsh/dircolors)"
