@@ -89,13 +89,13 @@ zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
 zstyle ':completion:*:messages' format $'\e[00;31m%d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
+
 # completion / misc environment
 [[ -e /usr/bin/aws_zsh_completer.sh ]] && source /usr/bin/aws_zsh_completer.sh
 if [[ -e /etc/profile.d/google-cloud-sdk.sh && -e /etc/bash_completion.d/google-cloud-sdk ]]; then
   autoload -U bashcompinit && bashcompinit # needed for gcloud
   source /etc/bash_completion.d/google-cloud-sdk
 fi
-#[ -x "$(which pyenv)" ]  && eval "$(pyenv init -)"
 CNF=/usr/share/doc/pkgfile/command-not-found.zsh
 [ -e $CNF ] && source $CNF
 
@@ -112,7 +112,6 @@ bindkey -M emacs " " magic-space
 bindkey -M viins " " magic-space
 # normal space during searches
 bindkey -M isearch " " magic-space
-
 
 # load per-host zsh customizations
 [ -e $HOME/.config/zsh/`hostname` ] && source $HOME/.config/zsh/`hostname`
