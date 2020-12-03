@@ -45,9 +45,8 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
-" make space more useful
-nnoremap <space> <C-d>zz
-nnoremap <s-space> <c-u>zz
+" make space fold
+nnoremap <space> za
 
 " reload vimrc
 noremap <leader>r :source ~/.vimrc<CR>

@@ -1,35 +1,35 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-source $HOME/.vim/mouse.vimrc
-source $HOME/.vim/plugs.vimrc
-source $HOME/.vim/maps.vimrc
-source $HOME/.vim/files.vimrc
 
 " set all default TS to 4??
-set shiftwidth=4
-set ts=4
-set sts=4
-set expandtab
-set autoindent
-set smartindent
-set smarttab
-set splitright
-set splitbelow
+set shiftwidth=4 ts=4 sts=4
+set expandtab smarttab
+set autoindent smartindent
+set splitright splitbelow
 set ignorecase smartcase
 
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+set showmatch
+set guifont=Monospace\ 8
+set number relativenumber
+set hidden " allow switching buffers without writing
+set diffopt=filler,iwhite,context:10
+set foldlevelstart=2
+set fdo-=block " dont open folds with {} movement
 
 set cul
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch
 set scrolloff=4
+
+" highlight trailing whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -45,41 +45,19 @@ function! ResCur()
     return 1
   endif
 endfunction
-
 augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
-
 autocmd BufReadPost *
 \ if line("'\"") > 1 && line("'\"") <= line("$") |
 \   exe "normal! g`\"" |
 \ endif
 
-" Tell vim to remember certain things when we exit
-set viminfo='100,<500,s50,:1000,%
-set history=1000
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-set showmatch
-set guifont=Monospace\ 8
-
-set number
-let g:number=1
-set relativenumber
-let g:relnum=1
-
+" persistent undo
 if has("persistent_undo")
   set undofile
   if !isdirectory($HOME . "/.vim_undodir")
@@ -88,41 +66,25 @@ if has("persistent_undo")
   set undodir=~/.vim_undodir
 endif
 
-set hidden " allow switching buffers without writing
-set diffopt=filler,iwhite,context:10
+" Tell vim to remember certain things when we exit
+set viminfo='100,<500,s50,:1000,%
+set history=1000
 
-let g:jedi#popup_on_dot = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
-let g:jedi#rename_command = '<leader>R'
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
 
-set foldlevelstart=2
-"set tabpagemax=40
+" always be able to run man
+runtime ftplugin/man.vim
+"let g:ft_man_open_mode = 'new'
 
-set fdo-=block " dont open folds with {} movement
-
-" lightline, fonts, and colors
-"set noshowmode
-let g:lightline#bufferline#show_number = 1
-"let g:lightline#bufferline#read_only = ' [RO]'
-"let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#shorten_path = 1
-" hide path completely
-"let g:lightline#bufferline#filename_modifier = ':t'
-let g:lightline = {
-    \ 'colorscheme': 'one',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], ['readonly','modified' ], ['buffers'] ],
-    \   'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ] ]
-    \  },
-    \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
-    \ 'component_type': {'buffers': 'tabsel'},
-    \ 'component': {
-    \   'lineinfo': '%3l:%-2v%<',
-    \   }
-    \ }
-set showtabline=1
+source $HOME/.vim/plugs.vimrc
+source $HOME/.vim/mouse.vimrc
+source $HOME/.vim/maps.vimrc
+source $HOME/.vim/files.vimrc
 
 "Only use this theme in X
 if has_key(environ(), 'DISPLAY')
@@ -130,16 +92,3 @@ if has_key(environ(), 'DISPLAY')
     set bg=dark
     hi! Normal ctermbg=NONE guibg=NONE
 endif
-
-set laststatus=2
-let g:indentLine_concealcursor=''
-
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_loc_list_height = 6
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-" always be able to run man
-runtime ftplugin/man.vim
-"let g:ft_man_open_mode = 'new'

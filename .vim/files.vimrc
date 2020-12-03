@@ -34,13 +34,9 @@ autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
 
 augroup python
     autocmd FileType python map <F5> <ESC>:w<CR>:below term ++close ++rows=14 ipython -i "%"<CR>
-    autocmd FileType python set tabstop=4 expandtab shiftwidth=4 softtabstop=4
     autocmd FileType python match ExtraWhiteSpace /^\t\+/
-    let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing.*docstring', 'unused-variable'] }
+    autocmd BufNewFile,BufRead *.py set foldmethod=indent fdls=1
 augroup END
-
-"autocmd FileType python set foldmethod=manual
-"autocmd FileType python set ts=4
 
 function! Complatex()
     let newf = expand("%:r") . ".pdf"
