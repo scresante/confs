@@ -2,8 +2,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'prabirshrestha/vim-lsp'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'prabirshrestha/asyncomplete.vim'
+
 Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-surround'
@@ -26,8 +29,7 @@ Plug 'junegunn/fzf'
 "colors
 "Plug 'flazz/vim-colorschemes' "| Plug 'lifepillar/vim-solarized8' | Plug 'trusktr/seti.vim'
 Plug 'crusoexia/vim-monokai'
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
+"Plug 'tomasr/molokai'
 
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -63,10 +65,10 @@ set laststatus=2
 "let g:syntastic_check_on_wq = 0
 "let g:syntastic_python_pylint_quiet_messages = { 'regex': ['invalid-name', 'missing.*docstring', 'unused-variable'] }
 
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#smart_auto_mappings = 0
-"let g:jedi#show_call_signatures = 0
-"let g:jedi#rename_command = '<leader>R'
+let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+let g:jedi#rename_command = '<leader>R'
 
 let g:ale_linters = {
             \ 'python': ['flake8', 'pylint'],
@@ -77,31 +79,3 @@ let g:ale_fixers = {
             \ 'python': ['yapf'],
             \}
 
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    " refer to doc to add more commands
-endfunction
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
