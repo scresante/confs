@@ -86,6 +86,7 @@ source $HOME/.vim/mouse.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
 
+colorscheme koehler
 "Only use this theme in X
 if has_key(environ(), 'DISPLAY')
     colorscheme monokai

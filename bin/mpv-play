@@ -1,21 +1,28 @@
 #!/bin/sh
-# this plays its first argument
 export DISPLAY=:0.0
+if [[ "$1" == "-t" ]]; then
+    notify-send -t 1500 "running mpv-play in test mode writing /tmp/mpv.log"
+    echo -n $(date +%F_%T_) >> /tmp/mpv.log
+    echo "$2" >> /tmp/mpv.log
+    exit
+fi
+
+# this plays its first argument
 link=$1
 profile=fastyt
 
 if [[ $link =~ ^https:/.*reddit.com ]]; then
     #reddit
     profile=reddit
-    html=$(curl -so- "$link")
-    title=$(echo "$html" | get_title.py)
-elif [[ $link =~ ^https://twitch.tv ]]; then
-    title=twitch
-else
-    #youtube
-    title=$(curl -so- "$link" | grep 'og:title' | sed 's/.*content=\(.*\)>/\1/')
+    #title=$(curl -so- "$link" | grep -o '<title>.*</title>' | sed -E 's/<.?title>//g')
+#elif [[ $link =~ ^https://twitch.tv ]]; then
+    #title=twitch
+#else
+    ##youtube
+    #title=$(curl -so- "$link" | grep -o '<title>.*</title>' | sed -E 's/<.?title>//g')
 fi
 
+title=$(curl -so- "$link" | grep -o '<title>.*</title>' | sed -E 's/<.?title>//g')
 # trim title to 300 chars
 title=${title:0:300}
 echo "$(date) $link $title" >> $HOME/.mpv.log

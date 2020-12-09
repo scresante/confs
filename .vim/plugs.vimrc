@@ -71,8 +71,8 @@ let g:jedi#show_call_signatures = 0
 let g:jedi#rename_command = '<leader>R'
 
 let g:ale_linters = {
-            \ 'python': ['flake8', 'pylint'],
-            \ 'haskell': ['cabal_ghc', 'ghc'],
+            \ 'python': [ 'pylint'],
+            \ 'haskell': ['hlint', 'hdevtools', 'hfmt'],
             \ 'javascript': ['eslint'],
             \}
 let g:ale_fixers = {

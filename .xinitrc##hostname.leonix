@@ -6,9 +6,25 @@
 
 xset r rate 200 50 &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
-#xcompmgr &
-unclutter &
+if [ -z "$(pgrep trayer)" ] ; then
+    trayer --edge top \
+           --align right \
+           --widthtype percent \
+           --height 20 \
+           --alpha 0 \
+           --transparent true \
+           --width 5 \
+           --tint 0x282c34 &
+fi
+if [ -z "$(pgrep nm-applet)" ] ; then
+    nm-applet &
+fi
+volumeicon &
+xcompmgr &
+#unclutter &
 dunst &
 nitrogen --restore &
 #alacritty &
 exec xmonad
+#pulseaudio --start --log-target=syslog &
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad
