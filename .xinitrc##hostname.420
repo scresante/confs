@@ -10,3 +10,4 @@ unclutter &
 dunst &
 nitrogen --restore &
 exec dwm
+
