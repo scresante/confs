@@ -8,8 +8,8 @@
 # manually force PATH, for security
 unset PATH
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-[ -d $HOME/bin ] && export PATH="$HOME/bin${PATH:+:${PATH}}"
-[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d ${HOME}bin ] && export PATH="${HOME}bin${PATH:+:${PATH}}"
+[ -d ${HOME}.local/bin ] && export PATH="${HOME}.local/bin:$PATH"
 
 # Other program settings:
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
