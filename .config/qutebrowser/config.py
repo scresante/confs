@@ -134,3 +134,6 @@ config.bind("<shift+h>", 'open -t qute://history')
 config.unbind("<ctrl+a>")
 config.bind("cf", "jseval -f remove_fbclid.js")
 c.content.user_stylesheets = ['~/.config/qutebrowser/css/scrollbar.css']
+
+config.bind("dt", "devtools")
+config.bind("dlh", "devtools left")
