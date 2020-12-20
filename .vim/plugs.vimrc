@@ -20,7 +20,7 @@ Plug 'junegunn/fzf'
 "Plug 'pangloss/vim-javascript', { 'for': ['jsx','js','javascript'] }
 "Plug 'mxw/vim-jsx', { 'for': ['jsx','js','javascript'] }
 "Plug 'mbbill/undotree'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Plug 'vim-syntastic/syntastic'
 "Plug 'vim-latex/vim-latex'
 "Plug 'elzr/vim-json'
