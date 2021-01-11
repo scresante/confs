@@ -93,3 +93,4 @@ if has_key(environ(), 'DISPLAY')
     set bg=dark
     hi! Normal ctermbg=NONE guibg=NONE
 endif
+set modeline

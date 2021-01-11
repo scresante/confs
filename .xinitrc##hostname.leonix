@@ -1,9 +1,7 @@
 #!/bin/sh
 
-## DWM:  Fix Gnome Apps Slow  Start due to failing services
-## Add this when you include flatpak in your system
-#dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-
+# set scr lock to composekey
+setxkbmap -option compose:sclk
 xset r rate 200 50 &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 if [ -z "$(pgrep trayer)" ] ; then
@@ -20,12 +18,8 @@ if [ -z "$(pgrep nm-applet)" ] ; then
     nm-applet &
 fi
 volumeicon &
-xcompmgr &
-#unclutter &
+picom &
 dunst &
 nitrogen --restore &
-#alacritty &
 exec xmonad
-#pulseaudio --start --log-target=syslog &
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad
-
