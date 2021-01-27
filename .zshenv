@@ -1,4 +1,5 @@
 # Default programs:
+export HOME="/home/$USER"
 export EDITOR="vim"
 export TERMINAL="alacritty"
 export BROWSER="qutebrowser"
