@@ -1,10 +1,16 @@
 #!/bin/sh
 DB=/opt/locate-all.db
-P_BM="yes"
+PRUNE_BIND_MOUNTS=0
 #PRUNEFS="9p afs anon_inodefs auto autofs bdev binfmt_misc cgroup cifs coda configfs cpuset cramfs debugfs devpts devtmpfs ecryptfs exofs ftpfs fuse fuse.encfs fuse.sshfs fusectl gfs gfs2 hugetlbfs inotifyfs iso9660 jffs2 lustre mqueue ncpfs nfs nfs4 nfsd pipefs proc ramfs rootfs rpc_pipefs securityfs selinuxfs sfs shfs smbfs sockfs sshfs sysfs ubifs udf usbfs vboxsf squashfs bpf"
 PRUNEFS="configfs devpts proc ramfs sysfs"
 PRUNENAMES=".git .hg .svn .snapshots"
 PRUNEPATHS="/afs /udev /var/lib/pacman/local /var/lock /var/spool" 
 
-sudo updatedb -l 0 --prunefs "$PRUNEFS" --prunenames "$PRUNENAMES" --prunepaths "$PRUNEPATHS"  -o $DB
+sudo updatedb -l 0 \
+  --prunefs "$PRUNEFS" \
+  --prunenames "$PRUNENAMES" \
+  --prunepaths "$PRUNEPATHS" \
+  --prune-bind-mounts $PRUNE_BIND_MOUNTS \
+  -o $DB
+
 echo $DB updated
