@@ -1,4 +1,3 @@
-" Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
@@ -82,9 +81,13 @@ runtime ftplugin/man.vim
 "let g:ft_man_open_mode = 'new'
 
 source $HOME/.vim/plugs.vimrc
-source $HOME/.vim/mouse.vimrc
+"source $HOME/.vim/mouse.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
+
+if has('mouse')
+  set mouse=a
+endif
 
 colorscheme koehler
 "Only use this theme in X
