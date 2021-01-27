@@ -12,6 +12,8 @@ settings:
     global: true
   colors.webpage.prefers_color_scheme_dark:
     global: true
+  content.geolocation:
+    https://shortwaveschedule.com: false
   content.media.audio_capture:
     https://meet.google.com: true
     https://meet.jit.si: true
@@ -35,6 +37,7 @@ settings:
     https://mattermost.tutti.ml: true
     https://messages.google.com: true
     https://realsport101.com: false
+    https://repl.it: true
     https://tmynn.ekamarkable.club: false
     https://www.1337x.to: false
     https://www.facebook.com: true
