@@ -83,3 +83,4 @@ alias viconf='vim ~/.vimrc ~/.vim/*.vimrc'
 alias vimconf=viconf
 
 alias wget="wget --hsts-file=${WGETRC%*/wgetrc}/wget-hsts"
+alias units='units -H "" '
