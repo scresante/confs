@@ -84,10 +84,11 @@ source $HOME/.vim/plugs.vimrc
 "source $HOME/.vim/mouse.vimrc
 source $HOME/.vim/maps.vimrc
 source $HOME/.vim/files.vimrc
-"source $HOME/.vim/coc.vimrc
+source $HOME/.vim/coc.vimrc
 
 if has('mouse')
   set mouse=a
+  set ttymouse=xterm2
 endif
 
 colorscheme koehler

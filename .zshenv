@@ -28,3 +28,4 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 export QT_QPA_PLATFORMTHEME='qt5ct'
+export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
