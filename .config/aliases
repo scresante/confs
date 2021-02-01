@@ -84,3 +84,4 @@ alias vimconf=viconf
 
 alias wget="wget --hsts-file=${WGETRC%*/wgetrc}/wget-hsts"
 alias units='units -H "" '
+alias ccat="pygmentize -O style=monokai -g"
