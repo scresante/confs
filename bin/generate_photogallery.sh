@@ -1,22 +1,20 @@
 #!/bin/zsh
 setopt extendedglob
-YEAR=2013
 
-prep() {
-  start=$(python -c "from datetime import datetime; print((datetime.now() - datetime($YEAR, 1, 1)).days)")
-  end=$(python -c "from datetime import datetime; print((datetime.now() - datetime($YEAR+1, 1, 1)).days)")
-  #
-  #copy files
-  for x in ../**/*(.md+${end}md-${start}Lm-50); do cp --reflink=always "$x" ./; done
-  echo $(ls | wc -l ) files copied
-  #resize big ones
+# first, convert images in the current directory into thumbnails in ./thumbs
+# i dont care if you dont have only images in this directory
+# thats up to the user
 
-  for x in (#i)*(jpg|jpeg|gif|png)(Lm+2); do convert "$x" -resize 2048x "$x"; echo -n '.'; done 
-  mkdir thumbs
-  mogrify -format gif -path thumbs -thumbnail 100x100 (#i)*(png|jpg|jpeg|gif|bmp)
-}
+# an artifact from the previous script
+YEAR=$(date +%Y)
 
-html() {
+# LOCPATH
+LOCPATH=${PWD#"$HOME"}
+
+mkdir thumbs
+echo generating thumbnails...
+mogrify -format gif -path thumbs -thumbnail 150x150 (#i)*(png|jpg|jpeg|gif|bmp)
+
 if [ ! -e "style.css" ]; then
     echo ''' img {
   border: 1px solid #ddd; /* Gray border */
@@ -47,11 +45,14 @@ echo '''
 <html lang="en">
 <head>
 	<meta name="generator" content="zsh" />
-    <title>highly classified CIA photo dump ('''$YEAR''', colorized)</title>
+    <title>'''$YEAR''' unclassified photo dump ('''$LOCPATH''', colorized)</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body bgcolor="#333">''' > index.html
-for x in *(.); do
+
+# here, ignore the previously created files, index.html and style.css
+
+for x in *~*(html|css)(.); do
     if [ ! -e thumbs/${x%.*}.gif ]; then
         img='/generic.gif'
     else
@@ -66,9 +67,3 @@ for x in *(.); do
 done
 
 echo "</body>" >> index.html
-}
-
-if [[ "$1" == "-p" ]]; then
-  prep
-fi
-html
