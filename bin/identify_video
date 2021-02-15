@@ -1,0 +1,2 @@
+#!/bin/sh
+ffprobe "$1" 2>&1 | grep "^Input\|Duration:\|Stream.*Video\|Stream.*Audio"
