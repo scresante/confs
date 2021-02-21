@@ -117,6 +117,7 @@ config.bind(',U', 'hint links spawn -d mpv-play {hint-url}')
 config.bind(';U', 'hint links spawn -d mpv --ytdl --ytdl-format=worst {hint-url}')
 config.bind(';u', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
 config.bind('zv', 'hint links spawn -d mpv-play {hint-url};; clear-keychain ')
+config.bind('zq', 'hint links spawn -d loglink {hint-url}')
 
 config.bind('sb', 'open qute://bookmarks#bookmarks')
 config.set('hints.chars', 'qwertasdfgzxcvb')
@@ -137,3 +138,5 @@ c.content.user_stylesheets = ['~/.config/qutebrowser/css/scrollbar.css']
 
 config.bind("dt", "devtools")
 config.bind("dlh", "devtools left")
+config.bind('zc', 'spawn -d chromium {url}')
+config.bind('zw', 'spawn -d icecat {url}')

@@ -76,6 +76,8 @@ else
     alias history='fc -l 1'
 fi
 
+alias cd..='cd ..'
+
 alias dh='dirs -v'
 alias h='fc -ln'
 
@@ -84,4 +86,4 @@ alias vimconf=viconf
 
 alias wget="wget --hsts-file=${WGETRC%*/wgetrc}/wget-hsts"
 alias units='units -H "" '
-alias ccat="pygmentize -O style=monokai -g"
+alias ccat="pygmentize -O style=monokai -g" #the highlight program works as well
