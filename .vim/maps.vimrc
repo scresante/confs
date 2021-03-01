@@ -102,3 +102,5 @@ function! Searchall()
     cw
 endfunction
 map <F9> <ESC>:call Searchall()<CR>
+"underline when in insert mode
+inoremap <C-u> <c-v>u0032<right>

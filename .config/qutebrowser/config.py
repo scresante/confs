@@ -7,6 +7,12 @@ c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103,W0127
 config.set('colors.webpage.darkmode.threshold.background', 100)
 # config.set('colors.webpage.bg', '#222')
 
+config.set('colors.webpage.darkmode.policy.images', 'smart')
+config.set('colors.webpage.darkmode.threshold.text', 150)
+config.set('colors.webpage.darkmode.threshold.background', 205)
+# config.set('colors.webpage.darkmode.policy.page', 'always')
+
+
 # User agent to send.  The following placeholders are defined:  *
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} \
@@ -130,7 +136,7 @@ config.set('session.lazy_restore', True)
 config.bind('tt', 'open -t -- {clipboard}')
 config.set('scrolling.bar', 'always')
 config.set('tabs.background', True)
-config.bind("<shift+w>", 'set-cmd-text -s :open -t')
+config.bind("<shift+w>", 'set-cmd-text -s :open -w')
 config.bind("<shift+h>", 'open -t qute://history')
 config.unbind("<ctrl+a>")
 config.bind("cf", "jseval -f remove_fbclid.js")
@@ -140,3 +146,4 @@ config.bind("dt", "devtools")
 config.bind("dlh", "devtools left")
 config.bind('zc', 'spawn -d chromium {url}')
 config.bind('zw', 'spawn -d icecat {url}')
+config.bind('zf', 'spawn --userscript qute-bitwarden')
