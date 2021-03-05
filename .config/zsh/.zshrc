@@ -127,4 +127,4 @@ source $HOME/.config/aliases
 autoload -U select-word-style
 select-word-style bash
 
-export HOME="/home/$USER"
+export HOME="/home/$USER/"
