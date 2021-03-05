@@ -1,6 +1,6 @@
 # Default programs:
 export HOME="/home/$USER"
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="qutebrowser"
 export READER="zathura"
